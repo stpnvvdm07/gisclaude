@@ -177,6 +177,19 @@ lg = leg.model().rootGroup(); lg.clear()
 for l in top_first:
     if '(фон)' in l.name() or l.name().startswith('Номера'): continue   # служебные слои в легенду не выводятся
     lg.addLayer(l)
+# перенос длинных подписей легенды (ширина 95 мм; в QGIS 3.34 автопереноса по ширине нет): символ переноса «|»
+import textwrap
+from qgis.core import QgsMapLayerLegendUtils
+from qgis.PyQt.QtCore import Qt
+def _wrap(t, n=40): return "|".join(textwrap.wrap(str(t), n)) if t and len(str(t)) > n else t
+leg.setWrapString("|")
+for nl in lg.findLayers():
+    if nl.layer() is None: continue
+    if len(nl.layer().name()) > 40: nl.setCustomProperty("legend/title-label", _wrap(nl.layer().name()))
+    for i, nd in enumerate(leg.model().layerLegendNodes(nl)):
+        lab = nd.data(Qt.DisplayRole)
+        if lab and len(str(lab)) > 40: QgsMapLayerLegendUtils.setLegendNodeUserLabel(nl, i, _wrap(lab))
+    leg.model().refreshLayerLegend(nl)
 leg.setLegendFilterByMapEnabled(False); place(leg, 315, 28, 95, 150)
 if NOTE.strip(): text(NOTE, 315, 190, 95, 70, 9)
 sb = QgsLayoutItemScaleBar(lay); sb.setLinkedMap(mp); sb.setStyle("Single Box"); sb.setUnits(QgsUnitTypes.DistanceMeters)
@@ -187,7 +200,7 @@ try:
     except Exception: pass
     place(pic, 292, 30, 14, 14)
 except Exception as e: print("стрелка севера не добавлена:", e)
-text("Масштаб 1:%d. Карта повёрнута на %.2f град.: южная граница территории горизонтальна" % (SCALE, ROT), 100, 214, 210, 6, 8, C["grey"])
+text("Масштаб 1:%d. Карта повёрнута на %.2f град.: южная граница территории горизонтальна" % (SCALE, ROT), 152, 222, 160, 6, 8, C["grey"])
 text(FOOT, 10, 284, 400, 6, 7, C["grey"])
 iface.openLayoutDesigner(lay)
 print("Карта %s собрана: слоёв %d, макет «%s», поворот %.2f, масштаб 1:%d" % (NUM, len(made), lname, ROT, SCALE))

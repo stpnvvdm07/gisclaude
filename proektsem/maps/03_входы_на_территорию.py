@@ -64,7 +64,7 @@ def mark(col, size=1.6, shape="circle", outline=None, a=255):
 def ring(col, size=3.2, w=0.5):
     return QgsMarkerSymbol.createSimple({"name": "circle", "color": "0,0,0,0", "size": str(size), "outline_color": rgba(col), "outline_width": str(w)})
 def shape_dd(sym, expr):
-    # форма маркера из выражения (имя формы QGIS: square, diamond, octagon, circle, pentagon, hexagon, cross2, triangle)
+    # форма маркера из выражения (имя формы QGIS: square, diamond, octagon, circle, pentagon, hexagon, cross_fill, triangle)
     try: key = QgsSymbolLayer.Property.Name
     except AttributeError: key = QgsSymbolLayer.PropertyName
     sym.symbolLayer(0).setDataDefinedProperty(key, QgsProperty.fromExpression(expr)); return sym
@@ -126,8 +126,8 @@ LAYERS = [
     ('K', 'cells', 'Ячейки', CELL_LINES, None),
     ('K', 'buildings', 'Здания', single(fill("#d3cabd")), None),
     ('K', 'fences', 'Ограждения', single(line("#8a7fb0",0.3)), None),
-    ('K', 'entries_territory', 'Способ фиксации входа', cats('substr("podtip",8)', [("арка", mark("#8b877f",3.0,"square"), "арка"), ("ворота", mark("#8b877f",3.0,"diamond"), "ворота"), ("калитка", mark("#8b877f",3.0,"octagon"), "калитка"), ("разрыв в застройке", mark("#8b877f",3.0,"circle"), "разрыв в застройке"), ("въезд", mark("#8b877f",3.0,"pentagon"), "въезд"), ("разрыв в насаждениях", mark("#8b877f",3.0,"hexagon"), "разрыв в насаждениях"), ("не зафиксирован", mark("#8b877f",3.0,"cross2"), "не зафиксирован")]), '"level"=\'внешний\''),
-    ('K', 'entries_territory', 'Организованность входа', cats('CASE WHEN "level"=\'внутренний\' THEN \'внутренний проход\' ELSE "fix_class" END', [("организован", shape_dd(mark("#2a9d4b",3.0,"circle",C["white"]), 'CASE substr("podtip",8) WHEN \'арка\' THEN \'square\' WHEN \'ворота\' THEN \'diamond\' WHEN \'калитка\' THEN \'octagon\' WHEN \'разрыв в застройке\' THEN \'circle\' WHEN \'въезд\' THEN \'pentagon\' WHEN \'разрыв в насаждениях\' THEN \'hexagon\' ELSE \'cross2\' END'), "организован"), ("не организован", shape_dd(mark("#d62828",3.0,"circle",C["white"]), 'CASE substr("podtip",8) WHEN \'арка\' THEN \'square\' WHEN \'ворота\' THEN \'diamond\' WHEN \'калитка\' THEN \'octagon\' WHEN \'разрыв в застройке\' THEN \'circle\' WHEN \'въезд\' THEN \'pentagon\' WHEN \'разрыв в насаждениях\' THEN \'hexagon\' ELSE \'cross2\' END'), "не организован"), ("внутренний проход", shape_dd(mark("#b9b4ab",2.0,"circle",C["white"]), 'CASE substr("podtip",8) WHEN \'арка\' THEN \'square\' WHEN \'ворота\' THEN \'diamond\' WHEN \'калитка\' THEN \'octagon\' WHEN \'разрыв в застройке\' THEN \'circle\' WHEN \'въезд\' THEN \'pentagon\' WHEN \'разрыв в насаждениях\' THEN \'hexagon\' ELSE \'cross2\' END'), "внутренний проход (не в п. 1.2)")]), None),
+    ('K', 'entries_territory', 'Способ фиксации входа', cats('substr("podtip",8)', [("арка", mark("#8b877f",3.0,"square"), "арка"), ("ворота", mark("#8b877f",3.0,"diamond"), "ворота"), ("калитка", mark("#8b877f",3.0,"octagon"), "калитка"), ("разрыв в застройке", mark("#8b877f",3.0,"circle"), "разрыв в застройке"), ("въезд", mark("#8b877f",3.0,"pentagon"), "въезд"), ("разрыв в насаждениях", mark("#8b877f",3.0,"hexagon"), "разрыв в насаждениях"), ("не зафиксирован", mark("#8b877f",3.0,"cross_fill"), "не зафиксирован")]), '"level"=\'внешний\''),
+    ('K', 'entries_territory', 'Организованность входа', cats('CASE WHEN "level"=\'внутренний\' THEN \'внутренний проход\' ELSE "fix_class" END', [("организован", shape_dd(mark("#2a9d4b",3.0,"circle",C["white"]), 'CASE WHEN substr("podtip",8)=\'арка\' THEN \'square\' WHEN substr("podtip",8)=\'ворота\' THEN \'diamond\' WHEN substr("podtip",8)=\'калитка\' THEN \'octagon\' WHEN substr("podtip",8)=\'разрыв в застройке\' THEN \'circle\' WHEN substr("podtip",8)=\'въезд\' THEN \'pentagon\' WHEN substr("podtip",8)=\'разрыв в насаждениях\' THEN \'hexagon\' ELSE \'cross_fill\' END'), "организован"), ("не организован", shape_dd(mark("#d62828",3.0,"circle",C["white"]), 'CASE WHEN substr("podtip",8)=\'арка\' THEN \'square\' WHEN substr("podtip",8)=\'ворота\' THEN \'diamond\' WHEN substr("podtip",8)=\'калитка\' THEN \'octagon\' WHEN substr("podtip",8)=\'разрыв в застройке\' THEN \'circle\' WHEN substr("podtip",8)=\'въезд\' THEN \'pentagon\' WHEN substr("podtip",8)=\'разрыв в насаждениях\' THEN \'hexagon\' ELSE \'cross_fill\' END'), "не организован"), ("внутренний проход", shape_dd(mark("#b9b4ab",2.0,"circle",C["white"]), 'CASE WHEN substr("podtip",8)=\'арка\' THEN \'square\' WHEN substr("podtip",8)=\'ворота\' THEN \'diamond\' WHEN substr("podtip",8)=\'калитка\' THEN \'octagon\' WHEN substr("podtip",8)=\'разрыв в застройке\' THEN \'circle\' WHEN substr("podtip",8)=\'въезд\' THEN \'pentagon\' WHEN substr("podtip",8)=\'разрыв в насаждениях\' THEN \'hexagon\' ELSE \'cross_fill\' END'), "внутренний проход (не в п. 1.2)")]), None),
     ('P', 'viol_cells', 'Номера ячеек анализа', combo(single(fill(C["white"],0,C["black"],0)), labels("num", 7, C["grey"])), '"in_scope"=1'),
 ]
 def make(src, name, title, style, subset=None):
@@ -175,6 +175,19 @@ lg = leg.model().rootGroup(); lg.clear()
 for l in top_first:
     if '(фон)' in l.name() or l.name().startswith('Номера'): continue   # служебные слои в легенду не выводятся
     lg.addLayer(l)
+# перенос длинных подписей легенды (ширина 95 мм; в QGIS 3.34 автопереноса по ширине нет): символ переноса «|»
+import textwrap
+from qgis.core import QgsMapLayerLegendUtils
+from qgis.PyQt.QtCore import Qt
+def _wrap(t, n=40): return "|".join(textwrap.wrap(str(t), n)) if t and len(str(t)) > n else t
+leg.setWrapString("|")
+for nl in lg.findLayers():
+    if nl.layer() is None: continue
+    if len(nl.layer().name()) > 40: nl.setCustomProperty("legend/title-label", _wrap(nl.layer().name()))
+    for i, nd in enumerate(leg.model().layerLegendNodes(nl)):
+        lab = nd.data(Qt.DisplayRole)
+        if lab and len(str(lab)) > 40: QgsMapLayerLegendUtils.setLegendNodeUserLabel(nl, i, _wrap(lab))
+    leg.model().refreshLayerLegend(nl)
 leg.setLegendFilterByMapEnabled(False); place(leg, 315, 28, 95, 150)
 if NOTE.strip(): text(NOTE, 315, 190, 95, 70, 9)
 sb = QgsLayoutItemScaleBar(lay); sb.setLinkedMap(mp); sb.setStyle("Single Box"); sb.setUnits(QgsUnitTypes.DistanceMeters)
@@ -185,7 +198,7 @@ try:
     except Exception: pass
     place(pic, 292, 30, 14, 14)
 except Exception as e: print("стрелка севера не добавлена:", e)
-text("Масштаб 1:%d. Карта повёрнута на %.2f град.: южная граница территории горизонтальна" % (SCALE, ROT), 100, 214, 210, 6, 8, C["grey"])
+text("Масштаб 1:%d. Карта повёрнута на %.2f град.: южная граница территории горизонтальна" % (SCALE, ROT), 152, 222, 160, 6, 8, C["grey"])
 text(FOOT, 10, 284, 400, 6, 7, C["grey"])
 iface.openLayoutDesigner(lay)
 print("Карта %s собрана: слоёв %d, макет «%s», поворот %.2f, масштаб 1:%d" % (NUM, len(made), lname, ROT, SCALE))

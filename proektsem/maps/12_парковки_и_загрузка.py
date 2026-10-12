@@ -26,12 +26,13 @@ EXT_W, EXT_H = 900.0, 540.0     # видимая область, м (900 x 540 �
 SCALE = 3000
 MAP_X, MAP_Y, MAP_W, MAP_H = 10, 28, 300, 180     # положение карты на листе A3 (альбомная, 420 x 297 мм), мм
 NUM, TITLE, SUBTITLE = "12", "Парковки и зоны загрузки", "Парковки по виду, зоны загрузки"
-NOTE = """Парковок: 15 (открытых 11), зон загрузки: 28, общая площадь зон загрузки 7486 м²."""
-FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v12, analiz_v12, problems_v12."
+NOTE = """Стоянок по чертежу v9: 21 (в v12 было 15): открытых 11, новых 6 (вид не указан — допущение), гаражей 2, здание-паркинг 1, открытая вокруг паркинга 1. Зон загрузки 28, общая площадь 7 486 м²."""
+FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v12 (зелень и стоянки — konkovo_v13 по чертежу v9), analiz_v12, problems_v12."
 
 prj = QgsProject.instance(); root = prj.layerTreeRoot(); home = prj.homePath()
 V = os.path.join(home, "vector")
-SRC = {"K": os.path.join(V, "konkovo_v12.gpkg"), "A": os.path.join(V, "analiz_v12.gpkg"), "P": os.path.join(V, "problems_v12.gpkg"),
+SRC = {"K": os.path.join(V, "konkovo_v12.gpkg"), "K13": os.path.join(V, "konkovo_v13.gpkg"),   # K13: зелень и стоянки по чертежу v9
+       "A": os.path.join(V, "analiz_v12.gpkg"), "P": os.path.join(V, "problems_v12.gpkg"),
        "S": os.path.join(V, "proektbase", "slopesandwalls.gpkg"), "BM": os.path.join(V, "basemap")}
 
 # ---------- шрифт (SF Pro, если установлен)
@@ -122,10 +123,10 @@ LAYERS = [
     ('BM', 'Moscow_water', 'Вода', single(fill(C["water"])), None),
     ('BM', 'Moscow_building', 'Застройка вне территории', single(fill(C["beige"])), None),
     ('BM', 'Moscow_roads', 'Дороги (OSM)', single(line(C["white"], 0.6)), None),
-    ('K', 'green', 'Озеленение', GREEN, None),
+    ('K13', 'green', 'Озеленение', GREEN, None),
     ('K', 'buildings', 'Здания', BLD, None),
     ('K', 'cells', 'Границы ячеек', CELL_LINES, None),
-    ('K', 'parking', 'Парковки', cats('"kind"', [("открытая", fill(C["blue"],200), "открытая"), ("гаражи", fill(C["lavender"],200), "гаражи"), ("открытая (вокруг здания-паркинга)", fill(C["teal"],200), "вокруг здания-паркинга"), ("здание-паркинг (многоуровневый)", fill(C["purple"],200), "здание-паркинг")]), None),
+    ('K13', 'parking', 'Парковки', cats('"kind"', [("открытая", fill(C["blue"],200), "открытая"), ("гаражи", fill(C["lavender"],200), "гаражи"), ("открытая (вокруг здания-паркинга)", fill(C["teal"],200), "вокруг здания-паркинга"), ("здание-паркинг (многоуровневый)", fill(C["purple"],200), "здание-паркинг"), ("открытая (вид не указан, допущение)", hatch(C["blue"]), "открытая, новая в v9 (вид — допущение)")]), None),
     ('K', 'loading_zones', 'Зоны загрузки', single(fill(C["orange"],220,C["dark"],0.3)), None),
     ('K', 'boundary', 'Граница территории', BND, None),
 ]

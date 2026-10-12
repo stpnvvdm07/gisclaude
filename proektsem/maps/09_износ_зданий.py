@@ -27,11 +27,12 @@ SCALE = 3000
 MAP_X, MAP_Y, MAP_W, MAP_H = 10, 28, 300, 180     # положение карты на листе A3 (альбомная, 420 x 297 мм), мм
 NUM, TITLE, SUBTITLE = "09", "Износ зданий", "Степень изношенности: указана в данных или оценка команды"
 NOTE = """Пункт 1.4: износ ≥40 %. Зданий с износом ≥40 %: 14 (данные 6, оценка команды 8)."""
-FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v12, analiz_v12, problems_v12."
+FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v12 (зелень и стоянки — konkovo_v13 по чертежу v9), analiz_v12, problems_v12."
 
 prj = QgsProject.instance(); root = prj.layerTreeRoot(); home = prj.homePath()
 V = os.path.join(home, "vector")
-SRC = {"K": os.path.join(V, "konkovo_v12.gpkg"), "A": os.path.join(V, "analiz_v12.gpkg"), "P": os.path.join(V, "problems_v12.gpkg"),
+SRC = {"K": os.path.join(V, "konkovo_v12.gpkg"), "K13": os.path.join(V, "konkovo_v13.gpkg"),   # K13: зелень и стоянки по чертежу v9
+       "A": os.path.join(V, "analiz_v12.gpkg"), "P": os.path.join(V, "problems_v12.gpkg"),
        "S": os.path.join(V, "proektbase", "slopesandwalls.gpkg"), "BM": os.path.join(V, "basemap")}
 
 # ---------- шрифт (SF Pro, если установлен)
@@ -122,7 +123,7 @@ LAYERS = [
     ('BM', 'Moscow_water', 'Вода', single(fill(C["water"])), None),
     ('BM', 'Moscow_building', 'Застройка вне территории', single(fill(C["beige"])), None),
     ('BM', 'Moscow_roads', 'Дороги (OSM)', single(line(C["white"], 0.6)), None),
-    ('K', 'green', 'Озеленение', GREEN, None),
+    ('K13', 'green', 'Озеленение', GREEN, None),
     ('K', 'buildings', 'Износ', cats(WEAR, [("40% и более", fill(C["red"]), "40 % и более"), ("менее 40%", fill(C["green_m"]), "менее 40 %"), ("нет данных", fill(C["beige"],255,C["brown"],0.2), "нет данных")]), None),
     ('K', 'cells', 'Границы ячеек', CELL_LINES, None),
     ('K', 'boundary', 'Граница территории', BND, None),

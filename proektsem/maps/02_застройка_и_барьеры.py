@@ -27,11 +27,12 @@ SCALE = 3000
 MAP_X, MAP_Y, MAP_W, MAP_H = 10, 28, 300, 180     # положение карты на листе A3 (альбомная, 420 x 297 мм), мм
 NUM, TITLE, SUBTITLE = "02", "Застройка, ограждения и рельеф", "Здания по типу, ограждения, откосы и подпорные стенки, арки"
 NOTE = """Здания: 91; ограждений: 107 (решётчатых высоких 80). Арки: 27. Откосы и стенки — барьеры для пешеходной связности."""
-FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v12, analiz_v12, problems_v12."
+FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v12 (зелень и стоянки — konkovo_v13 по чертежу v9), analiz_v12, problems_v12."
 
 prj = QgsProject.instance(); root = prj.layerTreeRoot(); home = prj.homePath()
 V = os.path.join(home, "vector")
-SRC = {"K": os.path.join(V, "konkovo_v12.gpkg"), "A": os.path.join(V, "analiz_v12.gpkg"), "P": os.path.join(V, "problems_v12.gpkg"),
+SRC = {"K": os.path.join(V, "konkovo_v12.gpkg"), "K13": os.path.join(V, "konkovo_v13.gpkg"),   # K13: зелень и стоянки по чертежу v9
+       "A": os.path.join(V, "analiz_v12.gpkg"), "P": os.path.join(V, "problems_v12.gpkg"),
        "S": os.path.join(V, "proektbase", "slopesandwalls.gpkg"), "BM": os.path.join(V, "basemap")}
 
 # ---------- шрифт (SF Pro, если установлен)
@@ -122,7 +123,7 @@ LAYERS = [
     ('BM', 'Moscow_water', 'Вода', single(fill(C["water"])), None),
     ('BM', 'Moscow_building', 'Застройка вне территории', single(fill(C["beige"])), None),
     ('BM', 'Moscow_roads', 'Дороги (OSM)', single(line(C["white"], 0.6)), None),
-    ('K', 'green', 'Озеленение', GREEN, None),
+    ('K13', 'green', 'Озеленение', GREEN, None),
     ('K', 'buildings', 'Здания по типу', cats('coalesce("Тип здания",\'без данных\')', [("Жилое", fill(C["brown"]), "жилое"), ("Нежилое", fill(C["teal"]), "нежилое"), ("Смешанное", fill(C["lavender"]), "смешанное"), ("Не определено", fill(C["grey"],150), "не определено")], (fill(C["beige"], 255, C["brown"], 0.2), "без данных")), None),
     ('S', 'slopesandwalls', 'Откосы и подпорные стенки', cats('"object"', [("Откос", line(C["orange"],0.7,"dash"), "откос"), ("Подпорная стенка", line(C["dark"],1.0), "подпорная стенка")]), None),
     ('K', 'fences', 'Ограждения', cats('"podtip"', [("Ограждение — высокое решётчатое", line(C["purple"],0.6), "высокое решётчатое"), ("Ограждение — высокое сплошное", line(C["black"],0.9), "высокое сплошное"), ("Ограждение — низкое", line(C["blue"],0.5,"dash"), "низкое")], (line(C["grey"],0.5,"dot"), "тип не указан")), None),

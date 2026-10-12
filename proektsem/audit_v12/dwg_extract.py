@@ -7,7 +7,8 @@ import ezdwg
 HERE = os.path.dirname(os.path.abspath(__file__))
 DWG = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "..", "raster", "yacheiki_1_v9.dwg")
 OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(HERE, "dwg_v9_ents.jsonl")
-LAYERS = {"PL_DETSKAYA", "PL_SOBAKI", "PL_SPORT", "PL_VORKAUT", "AVTOSTOYANKI", "GREEN_AREAS"}   # площадки, стоянки, естественные покрытия
+LAYERS = {"PL_DETSKAYA", "PL_SOBAKI", "PL_SPORT", "PL_VORKAUT", "AVTOSTOYANKI", "GREEN_AREAS",   # площадки, стоянки, естественные покрытия
+          "ZEL_LES_DREVESNYE"}   # древесные полигоны OSM - для деления зелени на деревья / траву (v13)
 
 def arc_pts(pts, bulges, closed):
     """LWPOLYLINE с дугами (bulge) -> ломаная."""

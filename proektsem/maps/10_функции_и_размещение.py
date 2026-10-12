@@ -27,11 +27,12 @@ SCALE = 3000
 MAP_X, MAP_Y, MAP_W, MAP_H = 10, 28, 300, 180     # положение карты на листе A3 (альбомная, 420 x 297 мм), мм
 NUM, TITLE, SUBTITLE = "10", "Обслуживающие объекты и размещение", "Здания по типу, объекты бизнеса по размещению"
 NOTE = """Объектов бизнеса 51: встроенных 19, встроенно-пристроенных 27, отдельно стоящих 5."""
-FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v12, analiz_v12, problems_v12."
+FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v12 (зелень и стоянки — konkovo_v13 по чертежу v9), analiz_v12, problems_v12."
 
 prj = QgsProject.instance(); root = prj.layerTreeRoot(); home = prj.homePath()
 V = os.path.join(home, "vector")
-SRC = {"K": os.path.join(V, "konkovo_v12.gpkg"), "A": os.path.join(V, "analiz_v12.gpkg"), "P": os.path.join(V, "problems_v12.gpkg"),
+SRC = {"K": os.path.join(V, "konkovo_v12.gpkg"), "K13": os.path.join(V, "konkovo_v13.gpkg"),   # K13: зелень и стоянки по чертежу v9
+       "A": os.path.join(V, "analiz_v12.gpkg"), "P": os.path.join(V, "problems_v12.gpkg"),
        "S": os.path.join(V, "proektbase", "slopesandwalls.gpkg"), "BM": os.path.join(V, "basemap")}
 
 # ---------- шрифт (SF Pro, если установлен)
@@ -122,7 +123,7 @@ LAYERS = [
     ('BM', 'Moscow_water', 'Вода', single(fill(C["water"])), None),
     ('BM', 'Moscow_building', 'Застройка вне территории', single(fill(C["beige"])), None),
     ('BM', 'Moscow_roads', 'Дороги (OSM)', single(line(C["white"], 0.6)), None),
-    ('K', 'green', 'Озеленение', GREEN, None),
+    ('K13', 'green', 'Озеленение', GREEN, None),
     ('K', 'buildings', 'Здания по типу', cats('coalesce("Тип здания",\'без данных\')', [("Жилое", fill(C["brown"]), "жилое"), ("Нежилое", fill(C["teal"]), "нежилое"), ("Смешанное", fill(C["lavender"]), "смешанное")], (fill(C["beige"],255,C["brown"],0.2), "без данных")), None),
     ('K', 'cells', 'Границы ячеек', CELL_LINES, None),
     ('K', 'business', 'Бизнес по размещению', cats('"placement"', [("встроенный", mark(C["blue"], 2.4, "circle", C["black"]), "встроенный"), ("встроенно-пристроенный", mark(C["yellow"], 2.4, "square", C["black"]), "встроенно-пристроенный"), ("отдельно стоящий", mark(C["red"], 2.4, "diamond", C["black"]), "отдельно стоящий")]), None),

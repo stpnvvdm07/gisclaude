@@ -26,12 +26,12 @@ EXT_W, EXT_H = 900.0, 540.0     # видимая область, м (900 x 540 �
 SCALE = 3000
 MAP_X, MAP_Y, MAP_W, MAP_H = 10, 28, 300, 180     # положение карты на листе A3 (альбомная, 420 x 297 мм), мм
 NUM, TITLE, SUBTITLE = "27", "Сводный счёт нарушений по ячейкам", "Число нарушенных пунктов из 11 на ячейку анализа; подпись — номер / счёт"
-NOTE = """Классы: 0–3 низкий (22), 4–5 средний (12), ≥ 6 высокий (8). Наибольший счёт: №28 — 9, №35 — 8, №14 — 7, №11 — 7, №32 — 6, №16 — 6, №15 — 6, №6 — 6."""
-FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v12, analiz_v12, problems_v12."
+NOTE = """Классы: 0–3 низкий (23), 4–5 средний (11), ≥ 6 высокий (8). Наибольший счёт: №28 — 9, №35 — 8, №11 — 7, №14 — 7, №6, №15, №29, №32 — 6. Без п. 1.3 высоких 6."""
+FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v13, analiz_v13, problems_v13 (зелень и стоянки по чертежу v9)."
 
 prj = QgsProject.instance(); root = prj.layerTreeRoot(); home = prj.homePath()
 V = os.path.join(home, "vector")
-SRC = {"K": os.path.join(V, "konkovo_v12.gpkg"), "A": os.path.join(V, "analiz_v12.gpkg"), "P": os.path.join(V, "problems_v12.gpkg"),
+SRC = {"K": os.path.join(V, "konkovo_v13.gpkg"), "A": os.path.join(V, "analiz_v13.gpkg"), "P": os.path.join(V, "problems_v13.gpkg"),
        "S": os.path.join(V, "proektbase", "slopesandwalls.gpkg"), "BM": os.path.join(V, "basemap")}
 
 # ---------- шрифт (SF Pro, если установлен)

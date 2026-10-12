@@ -26,13 +26,13 @@ EXT_W, EXT_H = 900.0, 540.0     # видимая область, м (900 x 540 �
 SCALE = 3000
 MAP_X, MAP_Y, MAP_W, MAP_H = 10, 28, 300, 180     # положение карты на листе A3 (альбомная, 420 x 297 мм), мм
 NUM, TITLE, SUBTITLE = "16", "Зоны контроля: жилые здания", "Активный (АЖ) и пассивный (ПЖ) контроль со стороны жилых зданий"
-NOTE = """Зон АЖ: 29, ПЖ: 96 (типы зон — по полю type в analiz_v12)."""
-FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v12 (зелень и стоянки — konkovo_v13 по чертежу v9), analiz_v12, problems_v12."
+NOTE = """Зон АЖ: 29, ПЖ: 96 (типы зон — по полю type в analiz_v13)."""
+FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v13, analiz_v13, problems_v13 (зелень и стоянки по чертежу v9)."
 
 prj = QgsProject.instance(); root = prj.layerTreeRoot(); home = prj.homePath()
 V = os.path.join(home, "vector")
-SRC = {"K": os.path.join(V, "konkovo_v12.gpkg"), "K13": os.path.join(V, "konkovo_v13.gpkg"),   # K13: зелень и стоянки по чертежу v9
-       "A": os.path.join(V, "analiz_v12.gpkg"), "P": os.path.join(V, "problems_v12.gpkg"),
+SRC = {"K": os.path.join(V, "konkovo_v13.gpkg"), "K13": os.path.join(V, "konkovo_v13.gpkg"),   # K13: зелень и стоянки по чертежу v9
+       "A": os.path.join(V, "analiz_v13.gpkg"), "P": os.path.join(V, "problems_v13.gpkg"),
        "S": os.path.join(V, "proektbase", "slopesandwalls.gpkg"), "BM": os.path.join(V, "basemap")}
 
 # ---------- шрифт (SF Pro, если установлен)

@@ -26,12 +26,12 @@ EXT_W, EXT_H = 900.0, 540.0     # видимая область, м (900 x 540 �
 SCALE = 3000
 MAP_X, MAP_Y, MAP_W, MAP_H = 10, 28, 300, 180     # положение карты на листе A3 (альбомная, 420 x 297 мм), мм
 NUM, TITLE, SUBTITLE = "05", "Комфортность: вертикальные пропорции", "Вертикальный коэффициент ячейки (отношение высоты застройки к ширине)"
-NOTE = """Пороги коэффициента: 0,6 и 1,4 / 2,0. Низкий <0,6 или ≥2,0; средний 0,6–1,4; высокий 1,4–2,0. Ячеек: низкий 25, средний 23, высокий 3."""
-FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v12, analiz_v12, problems_v12."
+NOTE = """Пороги коэффициента (Методика): высокий 1,3–2,0; средний 0,6–1,3; низкий < 0,6 или > 2,0. Ячеек анализа (42): низкий 21, средний 19, высокий 2 (все 52: 26 / 23 / 3)."""
+FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v13, analiz_v13, problems_v13 (зелень и стоянки по чертежу v9)."
 
 prj = QgsProject.instance(); root = prj.layerTreeRoot(); home = prj.homePath()
 V = os.path.join(home, "vector")
-SRC = {"K": os.path.join(V, "konkovo_v12.gpkg"), "A": os.path.join(V, "analiz_v12.gpkg"), "P": os.path.join(V, "problems_v12.gpkg"),
+SRC = {"K": os.path.join(V, "konkovo_v13.gpkg"), "A": os.path.join(V, "analiz_v13.gpkg"), "P": os.path.join(V, "problems_v13.gpkg"),
        "S": os.path.join(V, "proektbase", "slopesandwalls.gpkg"), "BM": os.path.join(V, "basemap")}
 
 # ---------- шрифт (SF Pro, если установлен)

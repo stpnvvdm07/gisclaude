@@ -27,11 +27,11 @@ SCALE = 3000
 MAP_X, MAP_Y, MAP_W, MAP_H = 10, 28, 300, 180     # положение карты на листе A3 (альбомная, 420 x 297 мм), мм
 NUM, TITLE, SUBTITLE = "04", "Границы анализа и ячейки", "Ячейки в анализе, вне зафиксированных границ, исключённые"
 NOTE = """Ячеек всего 52; is_anal=1: 34; ещё 8 включены, так как к ним обращены подъезды домов. Прочие ячейки — вне зафиксированных границ (нарушение 1.3)."""
-FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v12, analiz_v12, problems_v12."
+FOOT = "Проектный семинар, БГП251, команда 2. Коньково №2, EPSG:32637. Данные: konkovo_v13, analiz_v13, problems_v13 (зелень и стоянки по чертежу v9)."
 
 prj = QgsProject.instance(); root = prj.layerTreeRoot(); home = prj.homePath()
 V = os.path.join(home, "vector")
-SRC = {"K": os.path.join(V, "konkovo_v12.gpkg"), "A": os.path.join(V, "analiz_v12.gpkg"), "P": os.path.join(V, "problems_v12.gpkg"),
+SRC = {"K": os.path.join(V, "konkovo_v13.gpkg"), "A": os.path.join(V, "analiz_v13.gpkg"), "P": os.path.join(V, "problems_v13.gpkg"),
        "S": os.path.join(V, "proektbase", "slopesandwalls.gpkg"), "BM": os.path.join(V, "basemap")}
 
 # ---------- шрифт (SF Pro, если установлен)

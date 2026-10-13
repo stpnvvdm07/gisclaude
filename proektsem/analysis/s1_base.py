@@ -1,35 +1,50 @@
-# Анализ v15, шаг 1 — базовые слои: ячейки анализа, комфорт, входы во дворы, зоны загрузки.
-# Вход: vector/konkovo_v14.gpkg (ячейки, здания, подъезды, бизнес, ограждения, арки, ворота, зелень), vector/analiz_v13.gpkg (сеть).
-# Выход: vector/konkovo_v15.gpkg (копия v14 с новыми cells, entries, loading_zones, core_edge). Остальные версии не меняются.
+# Анализ, шаг 1 — базовые слои: ячейки и комфорт, входы во дворы, зоны загрузки.
+# Вход: vector/исходные_данные.gpkg (ячейки с ручным расчётом комфорта команды, здания, подъезды, бизнес, ограждения, арки, ворота,
+#       зелень, сеть, зоны загрузки команды). Выход: vector/konkovo_v16.gpkg.
 #
 # Правила:
-#  * ячейки анализа — 40 дворов в зафиксированных границах (бывшие краевые 15, 22, 29, 39, 47, 51 включены); ячейки 14 и 28
-#    без подъездов — вне анализа, остаются только как «территории вне зафиксированных границ» (п. 1.3);
-#  * комфорт — по геометрии: вертикаль = Σ(фасад × этажность × 3 м) / площадь; замкнутость = доля периметра у зданий,
-#    высоких ограждений и откосов; размер — длинная сторона описанного прямоугольника, 25–140 м;
+#  * ячейки анализа — 40 дворов в зафиксированных границах; ячейки без подъездов и за границами — вне анализа (п. 1.3);
+#  * комфорт — по таблице команды (xlsx): вертикальные пропорции по Макарову (фасад × этажность × 3 м / площадь),
+#    планировочный размер 25–140 м, замкнутость = длина фасадов / периметр; итог «комфортная» — как в таблице;
+#    для сверки — комфорт по баллам (низкий 0, средний 1, высокий 2; размер 0 / 2; комфортно от 4 из 6);
 #  * вход во двор — место, где путь с улицы проходит в жилой массив: в арке, между домами, в воротах или калитке ограждения;
-#    ищется: (1) по каждому пути, пересекающему внешний край дворов, на первых 120 м внутрь (дома по обе стороны не дальше 60 м, просвет до 90 м); типы с полевого обследования
+#    ищется: (1) по каждому пути, пересекающему внешний край дворов, на первых 120 м внутрь (дома по обе стороны не дальше 60 м, просвет до 90 м);
 #    (2) каждая арка с путём; (3) пересечение пути с просветом между соседними домами внешнего ряда;
-#    переносятся на найденные места (до 25 м); разрыв между домами до 30 м — организованный вход (средняя фиксация),
-#    шире — неорганизованный (низкая);
-#  * зона загрузки — часть внутридворового проезда (полоса 7 м по оси) у фасада здания (до 14 м) с магазином, кафе, аптекой,
-#    пунктом выдачи или ТЦ, в пределах 40 м от точки объекта (глубина корпуса — 12–15 м, магазины выходят на улицу, загрузка — со двора); заезд грузовиков к таким объектам идёт со двора.
-import os, shutil, sys, math, warnings
+#    типы с полевого обследования переносятся на найденные места (до 25 м); разрыв между домами до 30 м — организованный вход
+#    (средняя фиксация), шире — неорганизованный (низкая);
+#  * зоны загрузки — слой команды (competitions_2): 20 участков у торцов и фасадов с магазинами и сервисами.
+import os, sys, math, warnings
 import numpy as np, pandas as pd, geopandas as gpd, pyogrio
 from shapely.geometry import Point, LineString
 from shapely.ops import unary_union, substring
 warnings.filterwarnings("ignore")
 HERE = os.path.dirname(os.path.abspath(__file__)); V = os.path.join(HERE, "..", "vector")
-K14, A13, K15 = (os.path.join(V, f) for f in ("konkovo_v14.gpkg", "analiz_v13.gpkg", "konkovo_v15.gpkg"))
+SRC, K15 = os.path.join(V, "исходные_данные.gpkg"), os.path.join(V, "konkovo_v16.gpkg")
+K14 = A13 = SRC
 rd = lambda f, l: gpd.read_file(f, layer=l)
 def wr(df, f, l): pyogrio.write_dataframe(df, f, layer=l, driver="GPKG", append=False)
 U = lambda gs: unary_union([g for g in gs if g is not None and not g.is_empty])
 LOG = []
 def log(*a): s = " ".join(str(x) for x in a); LOG.append(s); print(s)
-shutil.copyfile(K14, K15)
+if os.path.exists(K15): os.remove(K15)
+# исходные слои, которые нужны дальше и на картах, — без изменений
+for n in ("boundary", "buildings", "business", "entrances_buildings", "playgrounds", "garbage", "green", "trees", "parking", "fences", "arches",
+          "gates", "crossings", "cells_excluded", "people_dens", "osv_manual"):
+    wr(rd(SRC, n), K15, n)
 
-# ---------------- ячейки и комфорт (геометрия и расчёт v14)
-c = rd(K14, "cells"); c["in_scope"] = (c.is_anal == 1).astype(int)
+# ---------------- ячейки и комфорт (таблица команды)
+c = rd(SRC, "cells"); c["in_scope"] = (c.is_anal == 1).astype(int)
+c["vert_koef"], c["vertical"], c["iso_koef"], c["isolation"], c["size"], c["planning"] = c.t_vert_koef, c.t_vertical.replace("Нет", "Низкий"), c.t_iso_koef, c.t_isolation, c.t_size, c.t_planning
+c["fasad_area"], c["fasad_len"] = c.t_fasad_m2, c.t_fasad_len
+P_ = {"Высокий": 2, "Средний": 1, "Низкий": 0}
+c["score"] = ((c.vertical.map(P_) + c.isolation.map(P_) + np.where(c.planning == "Комфортная", 2, 0)) / 6).round(2)
+c["comfort"] = c.t_comfort
+c["comfort_rule"] = np.where(c.score >= 0.665, "Комфортная", "Некомфортная")
+c = c[["num", "is_anal", "in_scope", "area", "perimeter", "fasad_area", "vert_koef", "vertical", "fasad_len", "iso_koef", "isolation", "size", "planning",
+       "comfort", "score", "comfort_rule", "geometry"]]
+S_ = c[c.in_scope == 1]
+log("комфорт (таблица команды): комфортных", int((S_.comfort == "Комфортная").sum()), "из", len(S_), sorted(S_[S_.comfort == "Комфортная"].num.tolist()),
+    "| по баллам:", int((S_.comfort_rule == "Комфортная").sum()), "| расходятся:", sorted(S_[S_.comfort != S_.comfort_rule].num.tolist()))
 log("ячеек:", len(c), "| в анализе:", int(c.in_scope.sum()), "| вне границ без подъездов (только п. 1.3):", sorted(c[c.num.isin([14, 28])].num.tolist()))
 wr(c, K15, "cells")
 
@@ -151,7 +166,6 @@ for seg in gaps:
         for p in getattr(x_, "geoms", [x_]):
             if p.geom_type == "Point":
                 cands.append(dict(podtip="Вход — разрыв в застройке", degree="средняя" if seg.length <= 30 else "низкая", gap_m=round(seg.length), path_type=r.type, geometry=p))
-wr(gpd.GeoDataFrame(geometry=gaps, crs=32637), K15, "front_gaps")
 C_ = gpd.GeoDataFrame(cands, crs=32637)
 # слить кандидаты ближе 18 м (один вход — один узел), приоритет: арка > ворота/калитка > разрыв > въезд > прочие
 PR = {"Вход — арка": 0, "Вход — ворота": 1, "Вход — калитка": 1, "Вход — разрыв в застройке": 2, "Вход — въезд": 3, "Вход — разрыв в насаждениях": 4, "Вход — не зафиксирован": 5}
@@ -178,37 +192,23 @@ E["fix_class"] = np.where(E.degree.isin(["высокая", "средняя"]), "
 E = E.drop(columns=["pr"]).reset_index(drop=True); E["node"] = E.index + 1
 E["cells"] = E.geometry.apply(lambda p: ",".join(str(n) for n, g in SC.set_index("num").geometry.items() if g.distance(p) <= 8))
 E = gpd.GeoDataFrame(E, crs=32637)
-log("входы v15:", len(E), "| организованы:", int((E.fix_class == "организован").sum()), "| по типу:", E.podtip.str.replace("Вход — ", "").value_counts().to_dict(),
+log("входы:", len(E), "| организованы:", int((E.fix_class == "организован").sum()), "| по типу:", E.podtip.str.replace("Вход — ", "").value_counts().to_dict(),
     "| с данными обследования:", int(E.src.str.startswith("обслед").sum()))
-wr(E, K15, "entries_territory"); wr(E, K15, "entry_nodes")
+wr(E, K15, "entries_territory")
 wr(gpd.GeoDataFrame({"what": ["внешний край дворов"]}, geometry=[LineString(ring.coords)], crs=32637), K15, "core_edge")
 
-# ---------------- зоны загрузки
+# ---------------- зоны загрузки (слой команды competitions_2)
 bz = rd(K14, "business")
 LOAD_KINDS = {"магазин", "общепит", "аптека", "пункт выдачи", "торговый центр", "для питомцев", "секон-хэнд", "почта"}
-src = bz[bz["Назначение"].isin(LOAD_KINDS)].copy()
-roads = net[net["type"] == "проезд"]; RD = U(roads.buffer(3.5))
-zones = []
-for r in src.itertuples():
-    p = r.geometry; host = b[b.distance(p) <= 6]
-    if not len(host): continue
-    hb = host.geometry.iloc[0]
-    # дворовая сторона: проезды внутри ячеек анализа у здания (до 18 м от фасада), в 30 м от объекта
-    near = RD.intersection(hb.buffer(14)).intersection(p.buffer(40)).intersection(U(SC.geometry).buffer(2)).difference(BLD)
-    if near.is_empty or near.area < 25: continue
-    zones.append(dict(kind=getattr(r, "Назначение"), bld_id=r.bld_id, geometry=near))
-LZ = gpd.GeoDataFrame(zones, crs=32637)
-LZ = gpd.GeoDataFrame(geometry=[g for g in getattr(U(LZ.geometry), "geoms", [U(LZ.geometry)])], crs=32637)
-LZ = LZ[LZ.area >= 25].reset_index(drop=True); LZ["area"] = LZ.area.round()
+src = bz[bz["Назначение"].isin(LOAD_KINDS)]
+LZ = rd(SRC, "loading_zones").reset_index(drop=True); LZ["geometry"] = LZ.buffer(0); LZ["area"] = LZ.area.round()
 LZ["objects"] = LZ.geometry.apply(lambda g: ", ".join(sorted(set(src[src.distance(g) <= 40]["Назначение"]))))
-LZ["function"], LZ["danger"], LZ["isolation"] = "обслуживающий", "опасный", "открытый"
-log("зоны загрузки v15:", len(LZ), "| площадь, м²:", int(LZ.area.sum()), "| объектов-источников:", len(src))
+LZ = LZ[["area", "function", "danger", "isolation", "objects", "geometry"]]
+log("зоны загрузки (команда):", len(LZ), "| площадь, м²:", int(LZ.area.sum()), "| закрытых:", int((LZ.isolation == "закрытый").sum()))
 wr(LZ, K15, "loading_zones")
-open(os.path.join(HERE, "log_s1.txt"), "w", encoding="utf-8").write("\n".join(LOG) + "\n")
 
 # открытый фронт двора: участки внешнего края без зданий и высоких ограждений рядом (вход «везде») — для карты и п. 1.1
 OPEN_EDGE = LineString(ring.coords).difference(FIXED.buffer(3))
 oe = gpd.GeoDataFrame(geometry=[g for g in getattr(OPEN_EDGE, "geoms", [OPEN_EDGE]) if g.length >= 15], crs=32637); oe["length"] = oe.length.round()
 log("открытый фронт дворов (без закрепления, вход с любого места):", len(oe), "участков,", int(oe.length.sum()), "м")
 wr(oe, K15, "open_edge")
-open(os.path.join(HERE, "log_s1.txt"), "w", encoding="utf-8").write("\n".join(LOG) + "\n")

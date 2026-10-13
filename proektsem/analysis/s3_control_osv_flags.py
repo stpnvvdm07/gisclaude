@@ -1,26 +1,25 @@
-# Анализ v15, шаг 3 (основа — analysis_v14/c_control_osv_flags.py): контроль без дыр и с меньшим активным публичным контролем,
-# освоенность шестиугольниками 12 м со сглаживанием, 11 пунктов, слои проблем и предпосылок, устойчивость -> problems_v15.gpkg.
-# v14, часть C: социальный контроль (с тротуарами граничных улиц и остановками у метро), места поведения, освоенность
-# (сеткой 10 м, правило «обустроено × используется»), 11 пунктов, счёт, слои проблем и предпосылок -> problems_v14.gpkg.
-import os, shutil, warnings, math
+# Анализ, шаг 3: социальный контроль (без дыр), места поведения, освоенность (шестиугольники 7 м со сглаживанием), 11 пунктов,
+# сводный счёт, слои проблем и предпосылок, устойчивость к порогам и допущениям.
+# Вход: vector/исходные_данные.gpkg, konkovo_v16.gpkg, analiz_v16.gpkg. Выход: analiz_v16.gpkg (контроль, освоенность), problems_v16.gpkg (пишется заново).
+import os, warnings, math
 import numpy as np, pandas as pd, geopandas as gpd, pyogrio
 from shapely.geometry import box
 from shapely.ops import unary_union, linemerge
 warnings.filterwarnings("ignore")
 HERE = os.path.dirname(os.path.abspath(__file__)); V = os.path.join(HERE, "..", "vector")
-K14, A14, A13, P13, P14 = (os.path.join(V, f) for f in ("konkovo_v15.gpkg", "analiz_v15.gpkg", "analiz_v13.gpkg", "problems_v13.gpkg", "problems_v15.gpkg"))
+SRC, K14, A14, P14 = (os.path.join(V, f) for f in ("исходные_данные.gpkg", "konkovo_v16.gpkg", "analiz_v16.gpkg", "problems_v16.gpkg"))
 rd = lambda f, l: gpd.read_file(f, layer=l)
 def wr(df, f, l): pyogrio.write_dataframe(df, f, layer=l, driver="GPKG", append=False)
 U = lambda gs: unary_union([g for g in gs if g is not None and not g.is_empty])
 LOG = []
 def log(*a): s = " ".join(str(x) for x in a); LOG.append(s); print(s)
-shutil.copyfile(P13, P14)
+if os.path.exists(P14): os.remove(P14)
 
 BLD = U(rd(K14, "buildings").buffer(0))
 TER = U(list(rd(K14, "cells").geometry) + list(rd(K14, "cells_excluded").geometry)).buffer(0.5).buffer(-0.5)   # жилое образование без проезжей части улиц
 FREE = TER.difference(BLD)
-net = rd(A14, "network"); cz = rd(A13, "control_zones"); cz["geometry"] = cz.buffer(0)
-ex = rd(K14, "cells_excluded"); EXC = U(ex.buffer(0)); biz = rd(K14, "business"); fl = rd(A13, "flows")
+net = rd(A14, "network"); cz = rd(SRC, "control_zones"); cz["geometry"] = cz.buffer(0)
+ex = rd(K14, "cells_excluded"); EXC = U(ex.buffer(0)); biz = rd(K14, "business"); fl = rd(SRC, "flows")
 tp = gpd.read_file(os.path.join(V, "basemap", "Moscow_transport_points.gpkg")).to_crs(32637)
 stops = tp[(tp.distance(TER) <= 40) & tp.fclass.isin(["bus_stop", "railway_station"])]
 metro = tp[(tp.name == "Беляево") & (tp.fclass == "railway_station")]
@@ -38,7 +37,7 @@ MALL = Point(*world_xy(*MALL_CROSSING_PLAN))
 wr(gpd.GeoDataFrame({"what": ["площадь у выхода метро", "выход метро «Беляево»", "переход к ТЦ с «Ашаном»"]}, geometry=[MSQ, MEX.buffer(6), MALL.buffer(6)], crs=32637), A14, "metro")
 # интенсивность по всем используемым путям: пешеходные пути к входам + пути к метро; транспорт; транзит
 net["load"] = net.ped.fillna(0)
-tr13 = rd(A13, "transit"); TRH_ = U(tr13[tr13.cls == "высокая"].geometry).buffer(2); TRA_ = U(tr13.geometry).buffer(2)
+tr13 = rd(SRC, "transit"); TRH_ = U(tr13[tr13.cls == "высокая"].geometry).buffer(2); TRA_ = U(tr13.geometry).buffer(2)
 on = lambda Z: net.geometry.apply(lambda g: g.intersection(Z).length / g.length > 0.5 if g.length else False)
 net["tr_hi"] = on(TRH_); net["tr_any"] = on(TRA_)
 # вариант Б (по заданию, п. 3.2): активный — оси с относительно высокой интенсивностью; пассивный — с относительно низкой; 1 путь — исключается
@@ -83,7 +82,7 @@ ctl = gpd.GeoDataFrame({"type": ["контролируемая", "частичн
 ctl = ctl.explode(index_parts=False); ctl = ctl[ctl.area > 2]; ctl["area"] = ctl.area.round()
 wr(ctl, A14, "control"); comp = gpd.GeoDataFrame(geometry=[COMP], crs=32637).explode(index_parts=False); comp = comp[comp.area > 2]
 wr(comp, A14, "competition")
-ar = ctl.groupby("type").area.sum(); log("контролируемость v14, га:", (ar / 1e4).round(2).to_dict(), "| доли:", (100 * ar / ar.sum()).round(0).to_dict(),
+ar = ctl.groupby("type").area.sum(); log("контролируемость, га:", (ar / 1e4).round(2).to_dict(), "| доли:", (100 * ar / ar.sum()).round(0).to_dict(),
                                           "| конкуренция", round(COMP.area / 1e4, 2), "га")
 
 # ---------------- места поведения (площадки): зоны по удалённости от подъезда и контроль
@@ -99,7 +98,7 @@ wr(pg, A14, "playgrounds_zones")
 log("площадки: зоны", pg.zone.value_counts().to_dict(), "| нарушение 3.3:", int(pg.problem.notna().sum()), "| по контролю", pg.control.value_counts().to_dict())
 
 # ---------------- освоенность: сетка 10 м по свободной территории (без проездов и стоянок)
-o13 = rd(A13, "osvoennost"); o13["geometry"] = o13.buffer(0)
+o13 = rd(SRC, "open_area"); o13["geometry"] = o13.buffer(0)
 OPEN = U(o13.geometry)                                     # свободная от зданий, проездов и стоянок территория v13
 GR = rd(K14, "green"); GREEN = U(GR.buffer(0)); PGU = U(pg.geometry)
 pdn = rd(K14, "people_dens"); MANY = U(pdn[pdn.dens == "много"].geometry); FEW = U(pdn[pdn.dens == "мало"].geometry)
@@ -158,14 +157,14 @@ for _ in range(2):
 G["area"] = G.area.round(1)
 G = G.drop(columns=["pg", "green", "man", "slope", "many", "few", "exc", "scope"])
 wr(G, A14, "osvoennost")
-t = G[G.cls != "не оценивается"].groupby("cls").area.sum(); log("освоенность v15 (шестиугольники, сглажено), га:", (t / 1e4).round(2).to_dict(), "| доли:", (100 * t / t.sum()).round(0).to_dict())
+t = G[G.cls != "не оценивается"].groupby("cls").area.sum(); log("освоенность (шестиугольники, сглажено), га:", (t / 1e4).round(2).to_dict(), "| доли:", (100 * t / t.sum()).round(0).to_dict())
 OSV = {k: U(G[G.cls == k].geometry) for k in ("освоенная", "частично освоенная", "неосвоенная")}
 
 # ---------------- 11 пунктов
 S = cells[cells.in_scope == 1].copy().set_index("num"); cg = S.geometry
 ent = rd(K14, "entries_territory"); NON = ent[ent.fix_class == "не организован"]
 nodes_non = pd.Series({n: int(NON.distance(g).le(8).sum()) for n, g in cg.items()})
-bb = rd(K14, "buildings"); w4 = rd(P13, "p1_4_wear")
+bb = rd(K14, "buildings"); w4 = rd(SRC, "wear")
 wear40 = pd.Series({n: int(w4.distance(g).le(8).sum()) for n, g in cg.items()})
 LZ = U(rd(K14, "loading_zones").buffer(0)); loading_m2 = pd.Series({n: g.intersection(LZ).area for n, g in cg.items()})
 garb = rd(K14, "garbage"); dz = pd.concat([biz[(biz.danger == "опасный") & (biz.isolation == "открытый")].geometry, garb.geometry])
@@ -178,7 +177,7 @@ gap = road[(~road.index.isin(comb.index)) & (road.length <= 25)]
 fill = gap[gap.geometry.apply(lambda g: CM.distance(__import__("shapely").geometry.Point(g.coords[0])) < 1 and CM.distance(__import__("shapely").geometry.Point(g.coords[-1])) < 1)]
 CM = linemerge(U(list(comb.geometry) + list(fill.geometry)))
 combined_m = pd.Series({n: g.intersection(CM).length for n, g in cg.items()})
-tr = rd(A13, "transit"); RES = U([AJ, PJ]); TRH = U(tr[tr.cls == "высокая"].geometry).intersection(RES)
+tr = rd(SRC, "transit"); RES = U([AJ, PJ]); TRH = U(tr[tr.cls == "высокая"].geometry).intersection(RES)
 transit_res_m = pd.Series({n: g.intersection(TRH).length for n, g in cg.items()})
 pod_n = pd.Series({n: int(pod.distance(g).le(8).sum()) for n, g in cg.items()})
 TRP = U(tr[(tr.cls == "высокая") & (tr["mode"] == "пешеходный")].geometry)
@@ -195,8 +194,9 @@ VAL = pd.DataFrame(dict(pod=pod_n, nodes_non=nodes_non, wear40=wear40, loading_m
 BASE = dict(comfort_cut=0.67, ent_non=1, wear_n=1, loading_m2=50, danger_obj=1, combined_m=20, transit_res_m=20, biz_transit=1, comp_pct=5, unc_pct=50, unos_pct=25)
 FL = ["p1_1", "p1_2", "p1_3", "p1_4", "p2_1", "p2_2", "p2_3", "p3_1", "p3_2", "p3_3", "p3_4"]
 def flags(d, p=None, score=None):
-    p = {**BASE, **(p or {})}; s_ = S.score if score is None else score; f = pd.DataFrame(index=cg.index)
-    f["p1_1"] = s_ < p["comfort_cut"] - 0.005; f["p1_2"] = d.nodes_non >= p["ent_non"]; f["p1_3"] = pd.Series(False, index=S.index)                 # в анализе только дворы в зафиксированных границах
+    p = {**BASE, **(p or {})}; f = pd.DataFrame(index=cg.index)
+    f["p1_1"] = (S.comfort != "Комфортная") if score is None else (score < p["comfort_cut"] - 0.005)     # комфорт — таблица команды
+    f["p1_2"] = d.nodes_non >= p["ent_non"]; f["p1_3"] = pd.Series(False, index=S.index)                 # в анализе только дворы в зафиксированных границах
     f["p1_4"] = d.wear40 >= p["wear_n"]; f["p2_1"] = d.loading_m2 >= p["loading_m2"]; f["p2_2"] = d.danger_obj >= p["danger_obj"]
     f["p2_3"] = d.combined_m >= p["combined_m"]; f["p3_1"] = (d.transit_res_m >= p["transit_res_m"]) & (d.pod > 0)
     f["p3_2"] = d.biz_transit >= p["biz_transit"]; f["p3_3"] = d.pg_out >= 1
@@ -205,14 +205,14 @@ def flags(d, p=None, score=None):
     return f.astype(int)
 def classify(s): return pd.cut(s, [-1, 3, 5, 99], labels=["низкая", "средняя", "высокая"]).astype(str)
 F0 = flags(VAL); sc = F0[FL].sum(axis=1)
-VC = S[["is_anal", "score", "comfort", "vertical", "isolation", "planning"]].rename(columns={"score": "comfort_score"}).join(VAL).join(F0)
+VC = S[["is_anal", "comfort", "score", "comfort_rule", "vertical", "isolation", "planning"]].rename(columns={"score": "comfort_score"}).join(VAL).join(F0)
 VC["score"] = sc; VC["cls"] = classify(sc); VC["in_scope"] = 1
 VG = gpd.GeoDataFrame(VC.reset_index(), geometry=list(cg.values), crs=32637); wr(VG, P14, "viol_cells")
 log("ячеек в счёте:", len(VG), "| флагов:", int(VG[FL].sum().sum()), VG[FL].sum().astype(int).to_dict())
 log("классы:", VG.cls.value_counts().to_dict(), "| лидеры:", VG.sort_values(["score", "num"], ascending=[False, True])[["num", "score"]].head(10).values.tolist())
 log("3.4 а/б/в:", int(VG.p3_4a.sum()), int(VG.p3_4b.sum()), int(VG.p3_4c.sum()))
 # слои пунктов
-wr(VG[VG.p1_1 == 1][["num", "comfort_score", "vertical", "isolation", "planning", "geometry"]], P14, "p1_1_cells")
+wr(VG[VG.p1_1 == 1][["num", "comfort", "comfort_score", "vertical", "isolation", "planning", "geometry"]], P14, "p1_1_cells")
 wr(NON[["node", "podtip", "geometry"]], P14, "p1_2_nodes")
 c_all = rd(K14, "cells"); wr(c_all[c_all.is_anal == 0][["num", "geometry"]], P14, "p1_3_cells")   # территории вне зафиксированных границ
 wr(gpd.GeoDataFrame({"what": ["совмещение потоков"]}, geometry=[CM], crs=32637).explode(index_parts=False), P14, "p2_3_combined")
@@ -220,19 +220,27 @@ wr(pgp[["type", "zone", "problem", "geometry"]], P14, "p3_3_places")
 SC = U(VG.geometry)
 for nm, z in (("p3_4_competition", COMP), ("p3_4_uncontrolled", UNC), ("p3_4_abandoned", OSV["неосвоенная"])):
     d = gpd.GeoDataFrame(geometry=[z.intersection(SC)], crs=32637).explode(index_parts=False); d = d[d.area > 2]; d["area"] = d.area.round(1); wr(d, P14, nm)
+# слои отдельных пунктов (для ручной проверки)
+wr(w4[w4.distance(SC) <= 8], P14, "p1_4_wear")
+lz_ = rd(K14, "loading_zones"); wr(lz_[lz_.intersects(SC)], P14, "p2_1_loading")
+dz_ = pd.concat([biz[(biz.danger == "опасный") & (biz.isolation == "открытый")].assign(kind="опасный объект бизнеса")[["kind", "Назначение", "geometry"]],
+                 garb.assign(kind="мусорная площадка", Назначение="мусорная площадка")[["kind", "Назначение", "geometry"]]])
+wr(gpd.GeoDataFrame(dz_[dz_.distance(SC) <= 6], crs=32637), P14, "p2_2_objects")
+wr(gpd.GeoDataFrame({"what": ["высокий транзит в зоне жилого контроля"]}, geometry=[TRH], crs=32637).explode(index_parts=False), P14, "p3_1_transit")
+wr(serv[["Назначение", "function", "geometry"]], P14, "p3_2_objects")
+wr(rd(SRC, "fav_closed"), P14, "pre_fav_closed")
 pre = gpd.GeoDataFrame(geometry=[OSV["освоенная"].intersection(CTL).intersection(SC)], crs=32637).explode(index_parts=False); pre = pre[pre.area > 2]
 pre["area"] = pre.area.round(1); wr(pre, P14, "pre_osv_ctl")
-wr(VG[VG.comfort_score >= 0.665][["num", "comfort_score", "geometry"]], P14, "pre_comfort_cells")
+wr(VG[VG.comfort == "Комфортная"][["num", "comfort", "comfort_score", "geometry"]], P14, "pre_comfort_cells")
 wr(ent[ent.fix_class == "организован"][["node", "podtip", "geometry"]], P14, "pre_nodes")
 wr(net[net.group == "высокая"][["ped", "geometry"]], P14, "pre_axes")
-log("предпосылки: освоено и под контролем", round(pre.area.sum() / 1e4, 2), "га | комфортных", int((VG.comfort_score >= 0.665).sum()),
+log("предпосылки: освоено и под контролем", round(pre.area.sum() / 1e4, 2), "га | комфортных", int((VG.comfort == "Комфортная").sum()),
     "| организованных входов", int((ent.fix_class == "организован").sum()))
 x = []
 for k, z in (("контролируемая", CTL), ("частично контролируемая", PART), ("неконтролируемая", UNC)):
     x.append({"контроль": k, **{kk: round(OSV[kk].intersection(z).intersection(SC).area) for kk in OSV}})
 XT = pd.DataFrame(x); log(XT.to_string(index=False))
 pd.to_pickle(dict(VAL=VAL, FLAGS=F0, VC=VC, XT=XT, LOG=LOG, BASE=BASE), os.path.join(HERE, "results.pkl"))
-open(os.path.join(HERE, "log_s3.txt"), "w", encoding="utf-8").write("\n".join(LOG) + "\n")
 
 # ---------------- устойчивость: пороги и допущения
 from scipy.stats import spearmanr
@@ -241,17 +249,17 @@ def comfort_var(vh=1.3, vl=0.6, vu=2.0, il=0.35, ih=0.65, sizeT=140):
     v = cc.vert_koef.apply(lambda q: 2 if vh <= q <= vu else (1 if vl <= q < vh else 0)); i = cc.iso_koef.apply(lambda q: 2 if q >= ih else (1 if q > il else 0))
     s = ((cc["size"] >= 25) & (cc["size"] <= sizeT)).astype(int) * 2
     return (v + i + s) / 6
-VARS = [("базовые пороги", {}, {}), ("comfort_cut = 0.5", {"comfort_cut": 0.5}, {}), ("comfort_cut = 0.83", {"comfort_cut": 0.83}, {}),
+VARS = [("базовые пороги", {}, {}), ("комфорт по баллам (от 4 из 6)", {}, {"vh": 1.3}), ("комфорт по баллам, строже (от 5 из 6)", {"comfort_cut": 0.83}, {"vh": 1.3}),
         ("ent_non = 2", {"ent_non": 2}, {}), ("wear_n = 2", {"wear_n": 2}, {}), ("loading_m2 = 100", {"loading_m2": 100}, {}),
         ("danger_obj = 2", {"danger_obj": 2}, {}), ("combined_m = 40", {"combined_m": 40}, {}), ("transit_res_m = 40", {"transit_res_m": 40}, {}),
         ("comp_pct = 10", {"comp_pct": 10}, {}), ("unc_pct = 30", {"unc_pct": 30}, {}), ("unc_pct = 70", {"unc_pct": 70}, {}),
         ("unos_pct = 50", {"unos_pct": 50}, {}), ("size_T = 150", {}, {"sizeT": 150}), ("ih = 0.7", {}, {"ih": 0.7}), ("vl = 0.5", {}, {"vl": 0.5})]
 c0 = classify(sc); sens = []; allsc = []
 for name, p, cf in VARS:
-    scv = comfort_var(**cf) if cf else S.score
+    scv = comfort_var(**cf) if cf else None
     f = flags(VAL, p, scv)[FL]; s = f.sum(axis=1); cl = classify(s); allsc.append(s)
     sens.append(dict(вариант=name, флагов=int(f.values.sum()), высоких=int((cl == "высокая").sum()), сменили_класс=int((cl != c0).sum()),
-                     rho=round(spearmanr(sc, s).correlation, 3), комфортных=int((scv >= p.get("comfort_cut", 0.67) - 0.005).sum()),
+                     rho=round(spearmanr(sc, s).correlation, 3), комфортных=int((S.comfort == "Комфортная").sum()) if scv is None else int((scv >= p.get("comfort_cut", 0.67) - 0.005).sum()),
                      высокие=", ".join(str(n) for n in s[cl == "высокая"].sort_values(ascending=False).index)))
 SENS = pd.DataFrame(sens); log(SENS[["вариант", "высоких", "сменили_класс", "rho", "высокие"]].to_string(index=False))
 SA = pd.concat(allsc, axis=1); always = [n for n in sc.index if (SA.loc[n] >= 6).sum() >= len(VARS) - 2]
@@ -270,4 +278,3 @@ ASS = pd.DataFrame([summ("как есть", VAL), summ("мусорные пло�
 log(ASS.to_string(index=False))
 R = pd.read_pickle(os.path.join(HERE, "results.pkl")); R.update(SENS=SENS, ASS=ASS, ALWAYS=always, LOG=LOG); R.pop("flags", None)
 pd.to_pickle(R, os.path.join(HERE, "results.pkl"))
-open(os.path.join(HERE, "log_s3.txt"), "w", encoding="utf-8").write("\n".join(LOG) + "\n")

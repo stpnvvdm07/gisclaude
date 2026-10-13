@@ -20,9 +20,10 @@ def el_html(e):
         b = f"border:{e['sw']}px solid {e['stroke']};box-sizing:border-box;" if e.get("stroke") else ""
         return f'<div style="position:absolute;left:{e["x"]}px;top:{e["y"]}px;width:{e["w"]}px;height:{e["h"]}px;background:{e["fill"] or "transparent"};opacity:{op};border-radius:50%;{b}"></div>'
     if t == "text":
+        rot = f'transform-origin:0 0;transform:rotate({e["rot"]}deg);white-space:nowrap;' if e.get("rot") else ""
         return (f'<div style="position:absolute;left:{e["x"]}px;top:{e["y"]}px;width:{e["w"]}px;font-size:{e["size"]}px;'
                 f'font-weight:{W8[e["wt"]]};color:{e["color"]};line-height:{e["size"]*e["lh"]:.1f}px;text-align:{e["align"]};opacity:{op};'
-                f'letter-spacing:{e.get("ls",0)}px;white-space:pre-wrap;">{html.escape(e["txt"])}</div>')
+                f'letter-spacing:{e.get("ls",0)}px;white-space:pre-wrap;{rot}">{html.escape(e["txt"])}</div>')
     if t == "img":
         r = "border-radius:50%;" if e.get("circle") else ""
         return f'<img src="{e["src"]}" style="position:absolute;left:{e["x"]}px;top:{e["y"]}px;width:{e["w"]}px;height:{e["h"]}px;object-fit:{e["fit"]};{r}opacity:{op};">'
@@ -43,7 +44,7 @@ def render(deck, out):
     css = (f"{fonts} html,body{{margin:0;padding:0;background:#777;}} .s{{position:relative;width:1920px;height:1080px;overflow:hidden;margin:0 auto 24px;"
            f"font-family:'SF Pro Display',sans-serif;}} @media print{{body{{background:none}} .s{{margin:0;page-break-after:always}}}} @page{{size:1920px 1080px;margin:0}}")
     body = "".join(f'<section class="s" id="s{i+1}" style="background:{s["bg"]}">' + "".join(el_html(e) for e in s["els"]) + "</section>" for i, s in enumerate(deck))
-    open(out, "w", encoding="utf-8").write(f'<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Коньково №2 — проблемы и предпосылки</title><style>{css}</style></head><body>{body}</body></html>')
+    open(out, "w", encoding="utf-8").write(f'<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Коньково №2: проблемы и предпосылки</title><style>{css}</style></head><body>{body}</body></html>')
 
 if __name__ == "__main__":
     deck = json.load(open(os.path.join(H, "deck.json"), encoding="utf-8"))

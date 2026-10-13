@@ -5,7 +5,7 @@
 #                                    стиль сохранён внутри файла: перетащите его в любой проект QGIS — откроется раскрашенным;
 #                                    папки: 1_base, 2_cells_entries, 3_paths, 4_control_osv, 5_problems, 6_preconditions, 0_basemap;
 #   GIS/konkovo_gis.qgz — проект QGIS с группами: Основа, Дворы и входы, Пути, Контроль и освоенность, Проблемы, Предпосылки,
-#                         Подложка (OSM и линии чертежа вокруг территории, спутник Яндекса и карта OSM — тайлами).
+#                         Подложка: чертёж AutoCAD картинкой (tools/dwg_basemap.py) + выключенные OSM, спутник Яндекса и карта OSM.
 #
 # Как запустить:
 #   в QGIS: Модули → Консоль Python → «Показать редактор» → открыть этот файл → «Запустить» (▶).
@@ -287,10 +287,22 @@ def export_layer(path, out_name, src, layer, fmap=None, rect=None):
     return True
 
 
-def build():
-    import shutil
+def add_dwg_basemap(proj, grp):
+    """Подложка из чертежа AutoCAD (tools/dwg_basemap.py) — самым нижним слоем; векторная подложка OSM при этом выключена."""
     from qgis.core import QgsRasterLayer
-    if os.path.isdir(DATA): shutil.rmtree(DATA)
+    tif = os.path.join(DATA, "0_basemap", "dwg_topo.tif")
+    if not os.path.exists(tif): return False
+    r = QgsRasterLayer(tif, "Подложка AutoCAD (топосъёмка)", "gdal"); proj.addMapLayer(r, False); grp.addLayer(r)
+    for ch in grp.children():
+        if ch.name() != r.name(): ch.setItemVisibilityChecked(False)
+    return True
+
+
+def build():
+    from qgis.core import QgsRasterLayer
+    for dp, _, fs in os.walk(DATA):                                       # старые слои; подложку AutoCAD (dwg_topo.tif) не трогаем
+        for f in fs:
+            if f.endswith(".gpkg"): os.remove(os.path.join(dp, f))
     proj = QgsProject.instance()
     if HEADLESS:
         proj.clear(); proj.setCrs(QgsVectorLayer(f"{K}|layername=boundary", "b", "ogr").crs())
@@ -326,6 +338,7 @@ def build():
         if os.path.exists(src) and export_layer(path, out_name, src, layer, None, rect): add("0 Подложка", name, path, out_name, style); nb += 1
     for name, uri in TILES:
         r = QgsRasterLayer(uri, name, "wms"); proj.addMapLayer(r, False); groups["0 Подложка"].addLayer(r).setItemVisibilityChecked(False)
+    add_dwg_basemap(proj, groups["0 Подложка"])
     for g in GROUP_ORDER:                                                     # по умолчанию видны основа, дворы и подложка
         groups[g].setItemVisibilityChecked(g in ("1 Основа", "2 Дворы и входы", "0 Подложка"))
     if HEADLESS:

@@ -1,9 +1,11 @@
 # ГИС Коньково (территория № 2): чистые слои для ручного анализа.
 #
 # Что делает: берёт результаты анализа (vector/konkovo_v16, analiz_v16, problems_v16) и собирает из них
-#   GIS/konkovo_gis.gpkg — один файл (имена слоёв латиницей, в проекте — русские названия, поля по-русски), стиль каждого слоя сохранён внутри
-#                          (перетащите слой в любой проект QGIS — он откроется уже раскрашенным);
-#   GIS/konkovo_gis.qgz  — проект QGIS с группами: Основа, Дворы и входы, Пути, Контроль и освоенность, Проблемы, Предпосылки.
+#   GIS/data/<группа>/<слой>.gpkg — каждый слой отдельным файлом (имена файлов и слоёв латиницей, поля по-русски),
+#                                    стиль сохранён внутри файла: перетащите его в любой проект QGIS — откроется раскрашенным;
+#                                    папки: 1_base, 2_cells_entries, 3_paths, 4_control_osv, 5_problems, 6_preconditions, 0_basemap;
+#   GIS/konkovo_gis.qgz — проект QGIS с группами: Основа, Дворы и входы, Пути, Контроль и освоенность, Проблемы, Предпосылки,
+#                         Подложка (OSM и линии чертежа вокруг территории, спутник Яндекса и карта OSM — тайлами).
 #
 # Как запустить:
 #   в QGIS: Модули → Консоль Python → «Показать редактор» → открыть этот файл → «Запустить» (▶).
@@ -38,7 +40,7 @@ def project_root():
 
 ROOT = project_root()
 V = os.path.join(ROOT, "vector"); OUT_DIR = os.path.join(ROOT, "GIS"); os.makedirs(OUT_DIR, exist_ok=True)
-GPKG = os.path.join(OUT_DIR, "konkovo_gis.gpkg"); QGZ = os.path.join(OUT_DIR, "konkovo_gis.qgz")       # в путях — только латиница
+DATA = os.path.join(OUT_DIR, "data"); QGZ = os.path.join(OUT_DIR, "konkovo_gis.qgz")       # в путях — только латиница
 K, A, P = (os.path.join(V, f) for f in ("konkovo_v16.gpkg", "analiz_v16.gpkg", "problems_v16.gpkg"))
 
 # ----------------------------------------------------------------------------- цвета (как на картах презентации)
@@ -236,25 +238,49 @@ LAYERS = [
     ("6 Предпосылки", "Благоприятные закрытые объекты", P, "pre_fav_closed", {"name": "название"}, point(C["green"], 2.4, shape="diamond"), None),
 ]
 
-# порядок групп в проекте сверху вниз (точки и линии — над полигонами)
-GROUP_ORDER = ["5 Проблемы", "6 Предпосылки", "3 Пути", "2 Дворы и входы", "4 Контроль и освоенность", "1 Основа"]
+# подложка: OSM и линии чертежа вокруг территории (обрезка по охвату ± 500 м), спутник и карта OSM — тайлами
+B = os.path.join(V, "basemap")
+GREEN = [(k, k, "#D7EBC6", None) for k in ("park", "grass", "meadow", "recreation_ground", "allotments", "cemetery")] + \
+        [("forest", "forest", "#C4E2B4", None), ("scrub", "scrub", "#C4E2B4", None)]
+BASEMAP = [
+    ("Линии чертежа (DWG)", os.path.join(B, "dwg_context_lines.gpkg"), "dwg_context_lines", "dwg_lines", line("#B9B4AA", 0.15)),
+    ("OSM: остановки и метро", os.path.join(B, "Moscow_transport_points.gpkg"), "Moscow_transport_points", "osm_transport_points",
+        cat("fclass", [("railway_station", "метро", C["red"], 3.0), ("bus_stop", "остановка", C["blue"], 1.8)], "point")),
+    ("OSM: здания", os.path.join(B, "Moscow_building.gpkg"), "moscow_buildings", "osm_buildings", fill("#E2DCD1", "#CFC7BA", 0.1)),
+    ("OSM: водотоки", os.path.join(B, "Moscow_waterways.gpkg"), "Moscow_waterways", "osm_waterways", line(C["water"], 0.5)),
+    ("OSM: железные дороги", os.path.join(B, "Moscow_railways.gpkg"), "Moscow_railways", "osm_railways", line("#8B877F", 0.5, dash=True)),
+    ("OSM: вода", os.path.join(B, "Moscow_water.gpkg"), "moscow_water", "osm_water", fill(C["water"])),
+    ("OSM: дорожные площади", os.path.join(B, "Moscow_traffic_areas.gpkg"), "Moscow_traffic_areas", "osm_traffic_areas", fill("#ECE7DE")),
+    ("OSM: зелень (землепользование)", os.path.join(B, "Moscow_landuse.gpkg"), "Moscow_landuse", "osm_landuse", cat("fclass", GREEN, "fill")),
+]
+TILES = [("Спутник (Яндекс)", "crs=EPSG:3395&format&type=xyz&url=https://core-sat.maps.yandex.net/tiles?l%3Dsat%26v%3D3.1025.0%26x%3D%7Bx%7D%26y%3D%7By%7D%26z%3D%7Bz%7D%26scale%3D1%26lang%3Dru_RU&zmax=19&zmin=0"),
+         ("Карта OSM", "type=xyz&url=https://tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0")]
+
+# порядок групп в проекте сверху вниз (точки и линии — над полигонами, подложка — в самом низу); папки — латиницей
+GROUP_ORDER = ["5 Проблемы", "6 Предпосылки", "3 Пути", "2 Дворы и входы", "4 Контроль и освоенность", "1 Основа", "0 Подложка"]
+GROUP_DIR = {"1 Основа": "1_base", "2 Дворы и входы": "2_cells_entries", "3 Пути": "3_paths", "4 Контроль и освоенность": "4_control_osv",
+             "5 Проблемы": "5_problems", "6 Предпосылки": "6_preconditions", "0 Подложка": "0_basemap"}
 
 
-def export_layer(name, src, layer, fmap):
-    """Копия слоя в общий GPKG: только поля из fmap (в новом порядке и с новыми именами)."""
+def export_layer(path, out_name, src, layer, fmap=None, rect=None):
+    """Слой в отдельный файл GPKG: поля из fmap (новые имена, новый порядок) или все поля; rect — обрезка по охвату."""
+    from qgis.core import QgsFeatureRequest
     s = QgsVectorLayer(f"{src}|layername={layer}", layer, "ogr")
     if not s.isValid(): print("  нет слоя:", layer, "в", os.path.basename(src)); return False
-    sf = s.fields(); keep = [(sf.indexOf(o), n) for o, n in fmap.items() if sf.indexOf(o) >= 0]
+    sf = s.fields()
+    keep = [(sf.indexOf(o), n) for o, n in fmap.items() if sf.indexOf(o) >= 0] if fmap is not None else [(i, sf.at(i).name()) for i in range(sf.count()) if sf.at(i).name() != "fid"]
     fields = QgsFields()
     for i, n in keep:
         f = QgsField(sf.at(i)); f.setName(n)
         if f.type() == QVariant.Bool: f = QgsField(n, QVariant.Int)
         fields.append(f)
-    o = QgsVectorFileWriter.SaveVectorOptions(); o.driverName = "GPKG"; o.layerName = name; o.fileEncoding = "UTF-8"
-    o.actionOnExistingFile = QgsVectorFileWriter.CreateOrOverwriteLayer if os.path.exists(GPKG) else QgsVectorFileWriter.CreateOrOverwriteFile
-    w = QgsVectorFileWriter.create(GPKG, fields, s.wkbType(), s.crs(), QgsCoordinateTransformContext(), o)
-    if w.hasError() != QgsVectorFileWriter.NoError: print("  ошибка записи:", name, w.errorMessage()); return False
-    for ft in s.getFeatures():
+    o = QgsVectorFileWriter.SaveVectorOptions(); o.driverName = "GPKG"; o.layerName = out_name; o.fileEncoding = "UTF-8"
+    o.actionOnExistingFile = QgsVectorFileWriter.CreateOrOverwriteFile
+    w = QgsVectorFileWriter.create(path, fields, s.wkbType(), s.crs(), QgsCoordinateTransformContext(), o)
+    if w.hasError() != QgsVectorFileWriter.NoError: print("  ошибка записи:", out_name, w.errorMessage()); return False
+    req = QgsFeatureRequest()
+    if rect is not None: req.setFilterRect(rect)
+    for ft in s.getFeatures(req):
         nf = QgsFeature(fields); nf.setGeometry(ft.geometry())
         nf.setAttributes([ft[i] if not isinstance(ft[i], bool) else int(ft[i]) for i, _ in keep]); w.addFeature(nf)
     del w
@@ -262,7 +288,9 @@ def export_layer(name, src, layer, fmap):
 
 
 def build():
-    if os.path.exists(GPKG): os.remove(GPKG)
+    import shutil
+    from qgis.core import QgsRasterLayer
+    if os.path.isdir(DATA): shutil.rmtree(DATA)
     proj = QgsProject.instance()
     if HEADLESS:
         proj.clear(); proj.setCrs(QgsVectorLayer(f"{K}|layername=boundary", "b", "ogr").crs())
@@ -270,29 +298,44 @@ def build():
     top = root if HEADLESS else root.insertGroup(0, "Коньково — ГИС")
     groups = {g: top.addGroup(g) for g in GROUP_ORDER}
     n = 0
-    for grp, name, src, layer, fmap, style, labels in LAYERS:
-        if not export_layer(layer, src, layer, fmap): continue            # в GPKG — латинское имя слоя, в проекте — русское
-        lyr = QgsVectorLayer(f"{GPKG}|layername={layer}", name, "ogr")
+
+    def add(grp, name, path, out_name, style, labels=None):
+        lyr = QgsVectorLayer(f"{path}|layername={out_name}", name, "ogr")
         apply_style(lyr, style)
-        if name == "Места выхода на улицу": size_by(lyr, "2 + 0.9 * sqrt(\"путей\")")
         if labels: apply_labels(lyr, labels)
-        lyr.saveStyleToDatabase("default", name, True, "")       # стиль внутри GPKG
-        proj.addMapLayer(lyr, False); groups[grp].addLayer(lyr); n += 1
+        lyr.saveStyleToDatabase("default", name, True, "")                    # стиль внутри файла слоя
+        proj.addMapLayer(lyr, False); groups[grp].addLayer(lyr)
+        return lyr
+
+    for grp, name, src, layer, fmap, style, labels in LAYERS:                 # каждый слой — свой файл, имя латиницей
+        d = os.path.join(DATA, GROUP_DIR[grp]); os.makedirs(d, exist_ok=True); path = os.path.join(d, f"{layer}.gpkg")
+        if not export_layer(path, layer, src, layer, fmap): continue
+        lyr = add(grp, name, path, layer, style, labels)
+        if name == "Места выхода на улицу": size_by(lyr, "2 + 0.9 * sqrt(\"путей\")"); lyr.saveStyleToDatabase("default", name, True, "")
+        n += 1
     # общая нагрузка — тот же слой сети другим стилем (в проекте)
-    net = QgsVectorLayer(f"{GPKG}|layername=network", "Сеть: общая нагрузка (двери + метро + ТЦ)", "ogr")
+    net = QgsVectorLayer(f"{os.path.join(DATA, GROUP_DIR['3 Пути'], 'network.gpkg')}|layername=network", "Сеть: общая нагрузка (двери + метро + ТЦ)", "ogr")
     apply_style(net, cat("нагрузка", [("высокая", "20 путей и больше", C["dred"], 1.2), ("низкая", "2–19 путей", "#E07AB5", 0.7),
                                       ("один путь", "один путь", "#6F6A62", 0.3)], "line", other=("без путей", "#D9D4CB", 0.25)))
     proj.addMapLayer(net, False); groups["3 Пути"].insertLayer(1, net).setItemVisibilityChecked(False)
-    for g in GROUP_ORDER:                                                     # по умолчанию видны основа и дворы
-        groups[g].setItemVisibilityChecked(g in ("1 Основа", "2 Дворы и входы"))
+    # подложка
+    rect = QgsVectorLayer(f"{K}|layername=boundary", "b", "ogr").extent(); rect.grow(500)
+    d = os.path.join(DATA, GROUP_DIR["0 Подложка"]); os.makedirs(d, exist_ok=True); nb = 0
+    for name, src, layer, out_name, style in BASEMAP:
+        path = os.path.join(d, f"{out_name}.gpkg")
+        if os.path.exists(src) and export_layer(path, out_name, src, layer, None, rect): add("0 Подложка", name, path, out_name, style); nb += 1
+    for name, uri in TILES:
+        r = QgsRasterLayer(uri, name, "wms"); proj.addMapLayer(r, False); groups["0 Подложка"].addLayer(r).setItemVisibilityChecked(False)
+    for g in GROUP_ORDER:                                                     # по умолчанию видны основа, дворы и подложка
+        groups[g].setItemVisibilityChecked(g in ("1 Основа", "2 Дворы и входы", "0 Подложка"))
     if HEADLESS:
         proj.writeEntry("Paths", "/Absolute", False); proj.setTitle("Коньково — ГИС для ручного анализа")
         from qgis.core import QgsReferencedRectangle
-        ext = QgsVectorLayer(f"{GPKG}|layername=boundary", "b", "ogr").extent(); ext.scale(1.1)
+        ext = QgsVectorLayer(f"{K}|layername=boundary", "b", "ogr").extent(); ext.scale(1.1)
         vs = proj.viewSettings(); vs.setDefaultViewExtent(QgsReferencedRectangle(ext, proj.crs()))
         if hasattr(vs, "setDefaultRotation"): vs.setDefaultRotation(-26.75)        # улицы по осям, как на картах команды
         proj.write(QGZ); print("проект:", QGZ)
-    print(f"готово: {n} слоёв в {GPKG}")
+    print(f"готово: {n} слоёв анализа и {nb} слоёв подложки (+ {len(TILES)} тайловых) в {DATA}")
 
 
 build()

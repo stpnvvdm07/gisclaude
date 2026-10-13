@@ -9,8 +9,8 @@ FONTDIR = os.path.join(H, "..", "design", "san-francisco-pro-display")
 FONTS = {w: os.path.join(FONTDIR, f"SF-Pro-Display-{w}.otf") for w in ("Regular", "Medium", "Semibold", "Bold", "Light")}
 # Четыре цвета команды + служебные серые. Тематические цвета — только внутри карт и их легенд.
 C = dict(dark="#14131A", pink="#DA71D7", cream="#F4F3EA", white="#FFFFFF",
-         grey="#D9D9D9", row="#EFEDE6", line="#D6D3CA", mid="#77747E", soft="#B7B4BC",
-         wm_w="#F7E6F6", wm_c="#EADFE6", wm_d="#24232C", wm_p="#E596E2", dark2="#1F1E27")
+         grey="#D9D9D9", row="#F2F2F2", line="#DADADA", mid="#6E6C75", soft="#A9A7AF", light="#E4E3E8",
+         wm_w="#F0F0F0", wm_g="#E6E6E6", wm_d="#25242D", dark2="#22212A")
 PAD = 24
 _fc = {}
 def font(w, s):
@@ -20,7 +20,7 @@ def font(w, s):
 def tw(text, size, w="Regular"):
     return font(w, size).getlength(text) / 4.0
 NB = re.compile(r"(?<=\d) (?=%|м\b|м²|га\b|км\b|мин\b|чел\b|\d{3}\b)|(?<=№) ")
-PREP = re.compile(r"(^|[\s(«])(до|от|в|во|на|и|с|к|у|по|за|не|из|о|а|но|без|под|над|при|для|через|что|как) ", re.I)
+PREP = re.compile(r"(^|[\s(«])(до|от|в|во|на|и|с|к|у|по|за|не|из|о|а|но|без|под|над|при|для|что|как|или) ", re.I)   # короткие слова к следующему
 def typo(txt):
     txt = NB.sub(" ", str(txt))
     for _ in range(2): txt = PREP.sub(lambda m: m.group(1) + m.group(2) + " ", txt)
@@ -46,7 +46,7 @@ class Slide:
     def add(self, **e): self.els.append(e); return e
     def rect(self, x, y, w, h, fill, op=1.0, r=0, stroke=None, sw=0, dash=False):
         return self.add(t="rect", x=x, y=y, w=w, h=h, fill=fill, op=op, r=r, stroke=stroke, sw=sw, dash=dash)
-    def text(self, x, y, w, txt, size=24, wt="Regular", color=C["dark"], lh=1.2, align="left", op=1.0, ls=0, wm=False, rot=0):
+    def text(self, x, y, w, txt, size=26, wt="Regular", color=C["dark"], lh=1.12, align="left", op=1.0, ls=0, wm=False, rot=0):
         txt = typo(txt); lines = wrap(txt, size, wt, w)
         e = self.add(t="text", x=x, y=y, w=w, txt=txt, size=size, wt=wt, color=color, lh=lh, align=align, op=op, ls=ls, rot=rot)
         if wm: e["wm"] = True

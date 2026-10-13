@@ -1,0 +1,4474 @@
+{
+ "m03": {
+  "title": "Входы на внутриквартальную территорию",
+  "w": 1920,
+  "h": 864,
+  "mpp": 0.6862499999999999,
+  "legend": [
+   {
+    "title": "Организованность входа",
+    "items": [
+     {
+      "label": "организован",
+      "icon": "icons/m03_1.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#2a9d4b",
+       "fa": 1.0,
+       "size": 3.0,
+       "shape": "circle",
+       "stroke": "#ffffff",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "не организован",
+      "icon": "icons/m03_2.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#d62828",
+       "fa": 1.0,
+       "size": 3.0,
+       "shape": "circle",
+       "stroke": "#ffffff",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "внутренний проход (не в п. 1.2)",
+      "icon": "icons/m03_3.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#b9b4ab",
+       "fa": 1.0,
+       "size": 2.0,
+       "shape": "circle",
+       "stroke": "#ffffff",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "Способ фиксации входа",
+    "items": [
+     {
+      "label": "арка",
+      "icon": "icons/m03_4.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#8b877f",
+       "fa": 1.0,
+       "size": 3.0,
+       "shape": "square",
+       "stroke": "#232323",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "ворота",
+      "icon": "icons/m03_5.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#8b877f",
+       "fa": 1.0,
+       "size": 3.0,
+       "shape": "diamond",
+       "stroke": "#232323",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "калитка",
+      "icon": "icons/m03_6.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#8b877f",
+       "fa": 1.0,
+       "size": 3.0,
+       "shape": "octagon",
+       "stroke": "#232323",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "разрыв в застройке",
+      "icon": "icons/m03_7.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#8b877f",
+       "fa": 1.0,
+       "size": 3.0,
+       "shape": "circle",
+       "stroke": "#232323",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "въезд",
+      "icon": "icons/m03_8.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#8b877f",
+       "fa": 1.0,
+       "size": 3.0,
+       "shape": "pentagon",
+       "stroke": "#232323",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "разрыв в насаждениях",
+      "icon": "icons/m03_9.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#8b877f",
+       "fa": 1.0,
+       "size": 3.0,
+       "shape": "hexagon",
+       "stroke": "#232323",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "не зафиксирован",
+      "icon": "icons/m03_10.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#8b877f",
+       "fa": 1.0,
+       "size": 3.0,
+       "shape": "cross_fill",
+       "stroke": "#232323",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ограждения",
+    "items": [
+     {
+      "label": "Ограждения",
+      "icon": "icons/m03_11.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#8a7fb0",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m03_12.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d3cabd",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейки",
+    "items": [
+     {
+      "label": "Ячейки",
+      "icon": "icons/m03_13.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Территория вне зафиксированных границ",
+    "items": [
+     {
+      "label": "Территория вне зафиксированных границ",
+      "icon": "icons/m03_14.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ebe8e1",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "situation": {
+  "title": "Ситуационная схема",
+  "w": 960,
+  "h": 1080,
+  "mpp": 3.125,
+  "legend": []
+ },
+ "m04": {
+  "title": "Границы анализа и ячейки",
+  "w": 1280,
+  "h": 720,
+  "mpp": 0.8234999999999999,
+  "legend": [
+   {
+    "title": "Номера",
+    "items": [
+     {
+      "label": "Номера",
+      "icon": "icons/m04_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.0,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейки, включённые из-за подъездов",
+    "items": [
+     {
+      "label": "Ячейки, включённые из-за подъездов",
+      "icon": "icons/m04_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e08a2b",
+       "fa": 0.78,
+       "stroke": "#e08a2b",
+       "sa": 0.78,
+       "sw": 0.2,
+       "dash": false,
+       "hatch": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейки",
+    "items": [
+     {
+      "label": "в анализе",
+      "icon": "icons/m04_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 0.55,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     },
+     {
+      "label": "вне зафиксированных границ",
+      "icon": "icons/m04_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e1d8c7",
+       "fa": 0.86,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Исключённые участки",
+    "items": [
+     {
+      "label": "Исключённые участки",
+      "icon": "icons/m04_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#333338",
+       "fa": 0.59,
+       "stroke": "#333338",
+       "sa": 0.59,
+       "sw": 0.2,
+       "dash": false,
+       "hatch": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m04_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m05": {
+  "title": "Комфортность: вертикальные пропорции",
+  "w": 640,
+  "h": 400,
+  "mpp": 1.600375,
+  "legend": [
+   {
+    "title": "Номера",
+    "items": [
+     {
+      "label": "Номера",
+      "icon": "icons/m05_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m05_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Вертикальные пропорции",
+    "items": [
+     {
+      "label": "высокий",
+      "icon": "icons/m05_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "средний",
+      "icon": "icons/m05_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d9c35b",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "низкий",
+      "icon": "icons/m05_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "нет фасадов",
+      "icon": "icons/m05_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#333338",
+       "fa": 0.47,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "вне анализа",
+      "icon": "icons/m05_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e1d8c7",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m06": {
+  "title": "Комфортность: изолированность",
+  "w": 640,
+  "h": 400,
+  "mpp": 1.600375,
+  "legend": [
+   {
+    "title": "Номера",
+    "items": [
+     {
+      "label": "Номера",
+      "icon": "icons/m06_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m06_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Изолированность",
+    "items": [
+     {
+      "label": "высокий",
+      "icon": "icons/m06_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "средний",
+      "icon": "icons/m06_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d9c35b",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "низкий",
+      "icon": "icons/m06_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "нет фасадов",
+      "icon": "icons/m06_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#333338",
+       "fa": 0.47,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "вне анализа",
+      "icon": "icons/m06_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e1d8c7",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m07": {
+  "title": "Комфортность: планировочные размеры",
+  "w": 640,
+  "h": 400,
+  "mpp": 1.600375,
+  "legend": [
+   {
+    "title": "Номера",
+    "items": [
+     {
+      "label": "Номера",
+      "icon": "icons/m07_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m07_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Планировочные размеры",
+    "items": [
+     {
+      "label": "комфортная",
+      "icon": "icons/m07_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "некомфортная",
+      "icon": "icons/m07_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "вне анализа",
+      "icon": "icons/m07_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e1d8c7",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m08": {
+  "title": "Комфортность ячеек: итог",
+  "w": 1280,
+  "h": 720,
+  "mpp": 0.8234999999999999,
+  "legend": [
+   {
+    "title": "Номер и балл",
+    "items": [
+     {
+      "label": "Номер и балл",
+      "icon": "icons/m08_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m08_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Комфортность",
+    "items": [
+     {
+      "label": "комфортная",
+      "icon": "icons/m08_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "некомфортная",
+      "icon": "icons/m08_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "вне анализа",
+      "icon": "icons/m08_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e1d8c7",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m09": {
+  "title": "Износ зданий",
+  "w": 960,
+  "h": 540,
+  "mpp": 1.0979999999999999,
+  "legend": [
+   {
+    "title": "Границы ячеек",
+    "items": [
+     {
+      "label": "Границы ячеек",
+      "icon": "icons/m09_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Износ",
+    "items": [
+     {
+      "label": "40 % и более",
+      "icon": "icons/m09_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "менее 40 %",
+      "icon": "icons/m09_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#8ed0ad",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "нет данных",
+      "icon": "icons/m09_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e1d8c7",
+       "fa": 1.0,
+       "stroke": "#a39279",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m09_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m09_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m10": {
+  "title": "Обслуживающие объекты и размещение",
+  "w": 960,
+  "h": 540,
+  "mpp": 1.0979999999999999,
+  "legend": [
+   {
+    "title": "Бизнес по размещению",
+    "items": [
+     {
+      "label": "встроенный",
+      "icon": "icons/m10_1.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#94acd6",
+       "fa": 1.0,
+       "size": 2.4,
+       "shape": "circle",
+       "stroke": "#16161c",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "встроенно-пристроенный",
+      "icon": "icons/m10_2.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#d9c35b",
+       "fa": 1.0,
+       "size": 2.4,
+       "shape": "square",
+       "stroke": "#16161c",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "отдельно стоящий",
+      "icon": "icons/m10_3.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#b13840",
+       "fa": 1.0,
+       "size": 2.4,
+       "shape": "diamond",
+       "stroke": "#16161c",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "Границы ячеек",
+    "items": [
+     {
+      "label": "Границы ячеек",
+      "icon": "icons/m10_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания по типу",
+    "items": [
+     {
+      "label": "жилое",
+      "icon": "icons/m10_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "нежилое",
+      "icon": "icons/m10_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#8bb0b0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "смешанное",
+      "icon": "icons/m10_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a68cc6",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "без данных",
+      "icon": "icons/m10_8.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e1d8c7",
+       "fa": 1.0,
+       "stroke": "#a39279",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m10_9.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m10_10.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m11": {
+  "title": "Опасные и благоприятные объекты",
+  "w": 1280,
+  "h": 720,
+  "mpp": 0.8234999999999999,
+  "legend": [
+   {
+    "title": "Мусорные точки",
+    "items": [
+     {
+      "label": "Мусорные точки",
+      "icon": "icons/m11_1.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#5a3d2b",
+       "fa": 1.0,
+       "size": 2.2,
+       "shape": "square",
+       "stroke": "#16161c",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "Бизнес по danger",
+    "items": [
+     {
+      "label": "опасный",
+      "icon": "icons/m11_2.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#b13840",
+       "fa": 1.0,
+       "size": 2.4,
+       "shape": "circle",
+       "stroke": "#16161c",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "индифферентный",
+      "icon": "icons/m11_3.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#d9c35b",
+       "fa": 1.0,
+       "size": 2.4,
+       "shape": "circle",
+       "stroke": "#16161c",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "благоприятный",
+      "icon": "icons/m11_4.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#5ec46e",
+       "fa": 1.0,
+       "size": 2.4,
+       "shape": "circle",
+       "stroke": "#16161c",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "Площадки",
+    "items": [
+     {
+      "label": "благоприятная",
+      "icon": "icons/m11_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "опасная",
+      "icon": "icons/m11_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.86,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Зоны загрузки (опасные)",
+    "items": [
+     {
+      "label": "Зоны загрузки (опасные)",
+      "icon": "icons/m11_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#6852a0",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Границы ячеек",
+    "items": [
+     {
+      "label": "Границы ячеек",
+      "icon": "icons/m11_8.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m11_9.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m11_10.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m11_11.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m12": {
+  "title": "Парковки и зоны загрузки",
+  "w": 1920,
+  "h": 864,
+  "mpp": 0.6862499999999999,
+  "legend": [
+   {
+    "title": "Зоны загрузки",
+    "items": [
+     {
+      "label": "Зоны загрузки",
+      "icon": "icons/m12_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e08a2b",
+       "fa": 0.86,
+       "stroke": "#5a3d2b",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Парковки",
+    "items": [
+     {
+      "label": "открытая",
+      "icon": "icons/m12_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#94acd6",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "гаражи",
+      "icon": "icons/m12_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a68cc6",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "вокруг здания-паркинга",
+      "icon": "icons/m12_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#8bb0b0",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "здание-паркинг",
+      "icon": "icons/m12_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#6852a0",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "открытая, новая в v9 (вид — допущение)",
+      "icon": "icons/m12_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#94acd6",
+       "fa": 1.0,
+       "stroke": "#94acd6",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false,
+       "hatch": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Границы ячеек",
+    "items": [
+     {
+      "label": "Границы ячеек",
+      "icon": "icons/m12_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m12_8.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m12_9.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m12_10.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m13": {
+  "title": "Пешеходная сеть: загруженность",
+  "w": 960,
+  "h": 540,
+  "mpp": 1.0979999999999999,
+  "legend": [
+   {
+    "title": "Пешеходная сеть",
+    "items": [
+     {
+      "label": "высокая",
+      "icon": "icons/m13_1.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#b13840",
+       "sa": 1.0,
+       "sw": 1.6,
+       "dash": false
+      }
+     },
+     {
+      "label": "низкая",
+      "icon": "icons/m13_2.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#94acd6",
+       "sa": 1.0,
+       "sw": 0.9,
+       "dash": false
+      }
+     },
+     {
+      "label": "один путь",
+      "icon": "icons/m13_3.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#333338",
+       "sa": 1.0,
+       "sw": 0.5,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Границы ячеек",
+    "items": [
+     {
+      "label": "Границы ячеек",
+      "icon": "icons/m13_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m13_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m13_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m13_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m14": {
+  "title": "Транспортная сеть: загруженность",
+  "w": 960,
+  "h": 540,
+  "mpp": 1.0979999999999999,
+  "legend": [
+   {
+    "title": "Транспортная сеть",
+    "items": [
+     {
+      "label": "высокая",
+      "icon": "icons/m14_1.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#b13840",
+       "sa": 1.0,
+       "sw": 1.8,
+       "dash": false
+      }
+     },
+     {
+      "label": "низкая",
+      "icon": "icons/m14_2.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#e08a2b",
+       "sa": 1.0,
+       "sw": 1.0,
+       "dash": false
+      }
+     },
+     {
+      "label": "один путь",
+      "icon": "icons/m14_3.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#333338",
+       "sa": 1.0,
+       "sw": 0.5,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Границы ячеек",
+    "items": [
+     {
+      "label": "Границы ячеек",
+      "icon": "icons/m14_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m14_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m14_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m14_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m15": {
+  "title": "Совмещение пешеходных и транспортных потоков",
+  "w": 1280,
+  "h": 720,
+  "mpp": 0.8234999999999999,
+  "legend": [
+   {
+    "title": "Совмещение транзитных потоков",
+    "items": [
+     {
+      "label": "Совмещение транзитных потоков",
+      "icon": "icons/m15_1.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#e08a2b",
+       "sa": 1.0,
+       "sw": 2.6,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Раздельность",
+    "items": [
+     {
+      "label": "отдельно от проезда",
+      "icon": "icons/m15_2.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#5ec46e",
+       "sa": 1.0,
+       "sw": 0.9,
+       "dash": false
+      }
+     },
+     {
+      "label": "по тротуару",
+      "icon": "icons/m15_3.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#94acd6",
+       "sa": 1.0,
+       "sw": 0.9,
+       "dash": false
+      }
+     },
+     {
+      "label": "по проезжей части",
+      "icon": "icons/m15_4.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#b13840",
+       "sa": 1.0,
+       "sw": 1.2,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Границы ячеек",
+    "items": [
+     {
+      "label": "Границы ячеек",
+      "icon": "icons/m15_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m15_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m15_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m15_8.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m16": {
+  "title": "Зоны контроля: жилые здания",
+  "w": 960,
+  "h": 540,
+  "mpp": 1.0979999999999999,
+  "legend": [
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m16_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Контроль жилых",
+    "items": [
+     {
+      "label": "АЖ — активный, жилой",
+      "icon": "icons/m16_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 0.59,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "ПЖ — пассивный, жилой",
+      "icon": "icons/m16_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#8ed0ad",
+       "fa": 0.43,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m16_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m16_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m17": {
+  "title": "Зоны контроля: нежилые объекты",
+  "w": 960,
+  "h": 540,
+  "mpp": 1.0979999999999999,
+  "legend": [
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m17_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Контроль нежилых",
+    "items": [
+     {
+      "label": "АП — активный, нежилой",
+      "icon": "icons/m17_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#6852a0",
+       "fa": 0.59,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "ПП — пассивный, нежилой",
+      "icon": "icons/m17_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a68cc6",
+       "fa": 0.43,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m17_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m17_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m18": {
+  "title": "Контролируемость территории и конкуренция",
+  "w": 1280,
+  "h": 720,
+  "mpp": 0.8234999999999999,
+  "legend": [
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m18_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Конкуренция контролей",
+    "items": [
+     {
+      "label": "Конкуренция контролей",
+      "icon": "icons/m18_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#c978d3",
+       "fa": 0.78,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Контролируемость",
+    "items": [
+     {
+      "label": "контролируемая",
+      "icon": "icons/m18_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 0.67,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "частично контролируемая",
+      "icon": "icons/m18_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d9c35b",
+       "fa": 0.59,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "неконтролируемая",
+      "icon": "icons/m18_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.67,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m18_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m18_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m19": {
+  "title": "Детские площадки и зоны контроля",
+  "w": 960,
+  "h": 540,
+  "mpp": 1.0979999999999999,
+  "legend": [
+   {
+    "title": "Площадка с проблемой",
+    "items": [
+     {
+      "label": "Площадка с проблемой",
+      "icon": "icons/m19_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.9,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.8,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Площадки по зоне",
+    "items": [
+     {
+      "label": "ближняя зона",
+      "icon": "icons/m19_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 0.78,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.4,
+       "dash": false
+      }
+     },
+     {
+      "label": "средняя зона",
+      "icon": "icons/m19_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d9c35b",
+       "fa": 0.78,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.4,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m19_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m19_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m19_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m20": {
+  "title": "Потоки людей и машин",
+  "w": 960,
+  "h": 540,
+  "mpp": 1.0979999999999999,
+  "legend": [
+   {
+    "title": "Потоки (класс)",
+    "items": [
+     {
+      "label": "высокий",
+      "icon": "icons/m20_1.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#b13840",
+       "fa": 1.0,
+       "size": 5.0,
+       "shape": "circle",
+       "stroke": "#16161c",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "средний",
+      "icon": "icons/m20_2.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#d9c35b",
+       "fa": 1.0,
+       "size": 3.8,
+       "shape": "circle",
+       "stroke": "#16161c",
+       "sa": 1.0
+      }
+     },
+     {
+      "label": "низкий",
+      "icon": "icons/m20_3.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#5ec46e",
+       "fa": 1.0,
+       "size": 2.6,
+       "shape": "circle",
+       "stroke": "#16161c",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "Границы ячеек",
+    "items": [
+     {
+      "label": "Границы ячеек",
+      "icon": "icons/m20_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m20_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m20_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m20_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m21": {
+  "title": "Транзитные потоки",
+  "w": 960,
+  "h": 540,
+  "mpp": 1.0979999999999999,
+  "legend": [
+   {
+    "title": "Транзит",
+    "items": [
+     {
+      "label": "пешеходный, высокая",
+      "icon": "icons/m21_1.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#b13840",
+       "sa": 1.0,
+       "sw": 1.8,
+       "dash": false
+      }
+     },
+     {
+      "label": "пешеходный, низкая",
+      "icon": "icons/m21_2.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#e08a2b",
+       "sa": 1.0,
+       "sw": 0.8,
+       "dash": false
+      }
+     },
+     {
+      "label": "транспортный, высокая",
+      "icon": "icons/m21_3.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#6852a0",
+       "sa": 1.0,
+       "sw": 1.8,
+       "dash": true
+      }
+     },
+     {
+      "label": "транспортный, низкая",
+      "icon": "icons/m21_4.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#94acd6",
+       "sa": 1.0,
+       "sw": 0.8,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Границы ячеек",
+    "items": [
+     {
+      "label": "Границы ячеек",
+      "icon": "icons/m21_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m21_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m21_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m21_8.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m22": {
+  "title": "Освоенность внутриквартальных территорий",
+  "w": 1280,
+  "h": 720,
+  "mpp": 0.8234999999999999,
+  "legend": [
+   {
+    "title": "Неосвоенная, контур команды",
+    "items": [
+     {
+      "label": "Неосвоенная, контур команды",
+      "icon": "icons/m22_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.0,
+       "stroke": "#b13840",
+       "sa": 1.0,
+       "sw": 0.8,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Наблюдения команды",
+    "items": [
+     {
+      "label": "много людей (используется)",
+      "icon": "icons/m22_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#4a74c9",
+       "sa": 1.0,
+       "sw": 0.6,
+       "dash": true
+      }
+     },
+     {
+      "label": "мало людей (не используется)",
+      "icon": "icons/m22_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.6,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Откосы и подпорные стенки",
+    "items": [
+     {
+      "label": "Откосы и подпорные стенки",
+      "icon": "icons/m22_4.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.4,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейки",
+    "items": [
+     {
+      "label": "Ячейки",
+      "icon": "icons/m22_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m22_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d3cabd",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Освоенность",
+    "items": [
+     {
+      "label": "освоенная",
+      "icon": "icons/m22_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "частично освоенная",
+      "icon": "icons/m22_8.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e9d68a",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "неосвоенная (заброшенная)",
+      "icon": "icons/m22_9.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "не оценивается",
+      "icon": "icons/m22_10.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ece9e3",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m23": {
+  "title": "Контролируемость × освоенность",
+  "w": 1280,
+  "h": 720,
+  "mpp": 0.8234999999999999,
+  "legend": [
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m23_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d3cabd",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Неосвоенная (заброшенная)",
+    "items": [
+     {
+      "label": "Неосвоенная (заброшенная)",
+      "icon": "icons/m23_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.9,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Конкуренция контролей",
+    "items": [
+     {
+      "label": "Конкуренция контролей",
+      "icon": "icons/m23_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#c978d3",
+       "fa": 0.75,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Неконтролируемая",
+    "items": [
+     {
+      "label": "Неконтролируемая",
+      "icon": "icons/m23_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.63,
+       "stroke": "#b13840",
+       "sa": 0.63,
+       "sw": 0.2,
+       "dash": false,
+       "hatch": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Освоенная и контролируемая",
+    "items": [
+     {
+      "label": "Освоенная и контролируемая",
+      "icon": "icons/m23_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейка анализа",
+    "items": [
+     {
+      "label": "Ячейка анализа",
+      "icon": "icons/m23_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 1.0,
+       "stroke": "#b8b2a7",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m24": {
+  "title": "Проблемы 1: пространственно-планировочные",
+  "w": 1280,
+  "h": 720,
+  "mpp": 0.8234999999999999,
+  "legend": [
+   {
+    "title": "1.2 неорганизованный узел входа",
+    "items": [
+     {
+      "label": "1.2 неорганизованный узел входа",
+      "icon": "icons/m24_1.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#d62828",
+       "fa": 1.0,
+       "size": 3.6,
+       "shape": "triangle",
+       "stroke": "#ffffff",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "1.1 ячейка: размеры, пропорции, фиксация границ (балл < 0,67)",
+    "items": [
+     {
+      "label": "1.1 ячейка: размеры, пропорции, фиксация границ (балл < 0,67)",
+      "icon": "icons/m24_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#1f6f78",
+       "sa": 1.0,
+       "sw": 0.6,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "1.4 здание с износом ≥ 40 %",
+    "items": [
+     {
+      "label": "1.4 здание с износом ≥ 40 %",
+      "icon": "icons/m24_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5a3d2b",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m24_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d3cabd",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "1.3 территория вне зафиксированных границ",
+    "items": [
+     {
+      "label": "1.3 территория вне зафиксированных границ",
+      "icon": "icons/m24_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a09a8f",
+       "fa": 1.0,
+       "stroke": "#a09a8f",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false,
+       "hatch": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейка анализа",
+    "items": [
+     {
+      "label": "Ячейка анализа",
+      "icon": "icons/m24_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 1.0,
+       "stroke": "#b8b2a7",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m25": {
+  "title": "Проблемы 2: функционально-планировочные",
+  "w": 1280,
+  "h": 720,
+  "mpp": 0.8234999999999999,
+  "legend": [
+   {
+    "title": "2.2 опасный открытый объект",
+    "items": [
+     {
+      "label": "2.2 опасный открытый объект",
+      "icon": "icons/m25_1.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#16161c",
+       "fa": 1.0,
+       "size": 3.0,
+       "shape": "cross_fill",
+       "stroke": "#ffffff",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "2.3 совмещение транзитных пешеходных и транспортных потоков",
+    "items": [
+     {
+      "label": "2.3 совмещение транзитных пешеходных и транспортных потоков",
+      "icon": "icons/m25_2.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#e08a2b",
+       "sa": 1.0,
+       "sw": 1.1,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "2.1 зона загрузки с заездом грузового транспорта",
+    "items": [
+     {
+      "label": "2.1 зона загрузки с заездом грузового транспорта",
+      "icon": "icons/m25_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#6852a0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m25_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d3cabd",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейка анализа",
+    "items": [
+     {
+      "label": "Ячейка анализа",
+      "icon": "icons/m25_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 1.0,
+       "stroke": "#b8b2a7",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m26": {
+  "title": "Проблемы 3: социально-планировочные",
+  "w": 1280,
+  "h": 720,
+  "mpp": 0.8234999999999999,
+  "legend": [
+   {
+    "title": "3.1 транзит через придомовую территорию",
+    "items": [
+     {
+      "label": "3.1 транзит через придомовую территорию",
+      "icon": "icons/m26_1.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#7a1f27",
+       "sa": 1.0,
+       "sw": 0.5,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.3 место поведения вне зоны контроля",
+    "items": [
+     {
+      "label": "3.3 место поведения вне зоны контроля",
+      "icon": "icons/m26_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d9c35b",
+       "fa": 1.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.35,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m26_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d3cabd",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.2 территория обслуживающих объектов с внешним транзитом",
+    "items": [
+     {
+      "label": "3.2 территория обслуживающих объектов с внешним транзитом",
+      "icon": "icons/m26_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#c9d6f2",
+       "fa": 1.0,
+       "stroke": "#4a74c9",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.4 заброшенная (неосвоенная) территория",
+    "items": [
+     {
+      "label": "3.4 заброшенная (неосвоенная) территория",
+      "icon": "icons/m26_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.9,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.4 конкуренция активного публичного и персонального контроля",
+    "items": [
+     {
+      "label": "3.4 конкуренция активного публичного и персонального контроля",
+      "icon": "icons/m26_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#c978d3",
+       "fa": 0.75,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.4 неконтролируемая территория",
+    "items": [
+     {
+      "label": "3.4 неконтролируемая территория",
+      "icon": "icons/m26_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.59,
+       "stroke": "#b13840",
+       "sa": 0.59,
+       "sw": 0.2,
+       "dash": false,
+       "hatch": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейка анализа",
+    "items": [
+     {
+      "label": "Ячейка анализа",
+      "icon": "icons/m26_8.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 1.0,
+       "stroke": "#b8b2a7",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m27": {
+  "title": "Сводный счёт нарушений по ячейкам",
+  "w": 1280,
+  "h": 720,
+  "mpp": 0.8234999999999999,
+  "legend": [
+   {
+    "title": "Номер / счёт",
+    "items": [
+     {
+      "label": "Номер / счёт",
+      "icon": "icons/m27_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m27_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d3cabd",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Счёт нарушений",
+    "items": [
+     {
+      "label": "высокий (≥ 6)",
+      "icon": "icons/m27_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.82,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "средний (4–5)",
+      "icon": "icons/m27_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d9c35b",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "низкий (0–3)",
+      "icon": "icons/m27_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 0.75,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "вне анализа",
+      "icon": "icons/m27_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e1d8c7",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m28": {
+  "title": "Проблемы планировочной организации придомовых территорий",
+  "w": 1920,
+  "h": 864,
+  "mpp": 0.6862499999999999,
+  "legend": [
+   {
+    "title": "1.2 неорганизованный узел входа",
+    "items": [
+     {
+      "label": "1.2 неорганизованный узел входа",
+      "icon": "icons/m28_1.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#d62828",
+       "fa": 1.0,
+       "size": 3.6,
+       "shape": "triangle",
+       "stroke": "#ffffff",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "2.2 опасный открытый объект",
+    "items": [
+     {
+      "label": "2.2 опасный открытый объект",
+      "icon": "icons/m28_2.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#16161c",
+       "fa": 1.0,
+       "size": 3.0,
+       "shape": "cross_fill",
+       "stroke": "#ffffff",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.1 транзит через придомовую территорию",
+    "items": [
+     {
+      "label": "3.1 транзит через придомовую территорию",
+      "icon": "icons/m28_3.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#7a1f27",
+       "sa": 1.0,
+       "sw": 0.5,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "2.3 совмещение транзитных пешеходных и транспортных потоков",
+    "items": [
+     {
+      "label": "2.3 совмещение транзитных пешеходных и транспортных потоков",
+      "icon": "icons/m28_4.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#e08a2b",
+       "sa": 1.0,
+       "sw": 1.1,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "1.1 ячейка: размеры, пропорции, фиксация границ (балл < 0,67)",
+    "items": [
+     {
+      "label": "1.1 ячейка: размеры, пропорции, фиксация границ (балл < 0,67)",
+      "icon": "icons/m28_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#1f6f78",
+       "sa": 1.0,
+       "sw": 0.6,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.3 место поведения вне зоны контроля",
+    "items": [
+     {
+      "label": "3.3 место поведения вне зоны контроля",
+      "icon": "icons/m28_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d9c35b",
+       "fa": 1.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.35,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "1.4 здание с износом ≥ 40 %",
+    "items": [
+     {
+      "label": "1.4 здание с износом ≥ 40 %",
+      "icon": "icons/m28_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5a3d2b",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m28_8.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d3cabd",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "2.1 зона загрузки с заездом грузового транспорта",
+    "items": [
+     {
+      "label": "2.1 зона загрузки с заездом грузового транспорта",
+      "icon": "icons/m28_9.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#6852a0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.2 территория обслуживающих объектов с внешним транзитом",
+    "items": [
+     {
+      "label": "3.2 территория обслуживающих объектов с внешним транзитом",
+      "icon": "icons/m28_10.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#c9d6f2",
+       "fa": 1.0,
+       "stroke": "#4a74c9",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.4 заброшенная (неосвоенная) территория",
+    "items": [
+     {
+      "label": "3.4 заброшенная (неосвоенная) территория",
+      "icon": "icons/m28_11.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.9,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.4 конкуренция активного публичного и персонального контроля",
+    "items": [
+     {
+      "label": "3.4 конкуренция активного публичного и персонального контроля",
+      "icon": "icons/m28_12.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#c978d3",
+       "fa": 0.75,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.4 неконтролируемая территория",
+    "items": [
+     {
+      "label": "3.4 неконтролируемая территория",
+      "icon": "icons/m28_13.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.59,
+       "stroke": "#b13840",
+       "sa": 0.59,
+       "sw": 0.2,
+       "dash": false,
+       "hatch": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "1.3 территория вне зафиксированных границ",
+    "items": [
+     {
+      "label": "1.3 территория вне зафиксированных границ",
+      "icon": "icons/m28_14.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a09a8f",
+       "fa": 1.0,
+       "stroke": "#a09a8f",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false,
+       "hatch": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейка анализа",
+    "items": [
+     {
+      "label": "Ячейка анализа",
+      "icon": "icons/m28_15.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 1.0,
+       "stroke": "#b8b2a7",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m29": {
+  "title": "Предпосылки развития планировочной организации",
+  "w": 1280,
+  "h": 720,
+  "mpp": 0.8234999999999999,
+  "legend": [
+   {
+    "title": "Организованный узел входа",
+    "items": [
+     {
+      "label": "Организованный узел входа",
+      "icon": "icons/m29_1.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#2a9d4b",
+       "fa": 1.0,
+       "size": 3.4,
+       "shape": "triangle",
+       "stroke": "#ffffff",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "Благоприятный закрытый объект",
+    "items": [
+     {
+      "label": "Благоприятный закрытый объект",
+      "icon": "icons/m29_2.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#000000",
+       "fa": 0.0,
+       "size": 3.0,
+       "shape": "circle",
+       "stroke": "#1d6b3a",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "Пешеходная ось с высокой интенсивностью",
+    "items": [
+     {
+      "label": "Пешеходная ось с высокой интенсивностью",
+      "icon": "icons/m29_3.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#1d6b3a",
+       "sa": 1.0,
+       "sw": 0.5,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/m29_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d3cabd",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Освоенная и контролируемая территория",
+    "items": [
+     {
+      "label": "Освоенная и контролируемая территория",
+      "icon": "icons/m29_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 0.84,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Комфортная ячейка (балл ≥ 0,67)",
+    "items": [
+     {
+      "label": "Комфортная ячейка (балл ≥ 0,67)",
+      "icon": "icons/m29_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e6f2df",
+       "fa": 1.0,
+       "stroke": "#b8b2a7",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейка анализа",
+    "items": [
+     {
+      "label": "Ячейка анализа",
+      "icon": "icons/m29_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 1.0,
+       "stroke": "#b8b2a7",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "m02": {
+  "title": "Застройка, ограждения и рельеф",
+  "w": 1920,
+  "h": 864,
+  "mpp": 0.6862499999999999,
+  "legend": [
+   {
+    "title": "Ворота и калитки",
+    "items": [
+     {
+      "label": "Ворота и калитки",
+      "icon": "icons/m02_1.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#d9c35b",
+       "fa": 1.0,
+       "size": 2.2,
+       "shape": "square",
+       "stroke": "#16161c",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "Арки",
+    "items": [
+     {
+      "label": "Арки",
+      "icon": "icons/m02_2.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#c978d3",
+       "sa": 1.0,
+       "sw": 1.4,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ограждения",
+    "items": [
+     {
+      "label": "высокое решётчатое",
+      "icon": "icons/m02_3.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#6852a0",
+       "sa": 1.0,
+       "sw": 0.6,
+       "dash": false
+      }
+     },
+     {
+      "label": "высокое сплошное",
+      "icon": "icons/m02_4.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.9,
+       "dash": false
+      }
+     },
+     {
+      "label": "низкое",
+      "icon": "icons/m02_5.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#94acd6",
+       "sa": 1.0,
+       "sw": 0.5,
+       "dash": true
+      }
+     },
+     {
+      "label": "тип не указан",
+      "icon": "icons/m02_6.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#333338",
+       "sa": 1.0,
+       "sw": 0.5,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Откосы и подпорные стенки",
+    "items": [
+     {
+      "label": "откос",
+      "icon": "icons/m02_7.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#e08a2b",
+       "sa": 1.0,
+       "sw": 0.7,
+       "dash": true
+      }
+     },
+     {
+      "label": "подпорная стенка",
+      "icon": "icons/m02_8.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#5a3d2b",
+       "sa": 1.0,
+       "sw": 1.0,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания по типу",
+    "items": [
+     {
+      "label": "жилое",
+      "icon": "icons/m02_9.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "нежилое",
+      "icon": "icons/m02_10.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#8bb0b0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "смешанное",
+      "icon": "icons/m02_11.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a68cc6",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "не определено",
+      "icon": "icons/m02_12.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#333338",
+       "fa": 0.59,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "без данных",
+      "icon": "icons/m02_13.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e1d8c7",
+       "fa": 1.0,
+       "stroke": "#a39279",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/m02_14.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/m02_15.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "zoom_28": {
+  "title": "Ячейка 28",
+  "w": 480,
+  "h": 480,
+  "mpp": 0.4791666666666667,
+  "legend": []
+ },
+ "zoom_35": {
+  "title": "Ячейка 35",
+  "w": 480,
+  "h": 480,
+  "mpp": 0.4791666666666667,
+  "legend": []
+ },
+ "zoom_14": {
+  "title": "Ячейка 14",
+  "w": 480,
+  "h": 480,
+  "mpp": 0.4791666666666667,
+  "legend": []
+ },
+ "zoom_11": {
+  "title": "Ячейка 11",
+  "w": 480,
+  "h": 480,
+  "mpp": 0.4791666666666667,
+  "legend": []
+ },
+ "b04": {
+  "title": "Границы анализа и ячейки",
+  "w": 480,
+  "h": 360,
+  "mpp": 2.1338333333333335,
+  "legend": [
+   {
+    "title": "Номера",
+    "items": [
+     {
+      "label": "Номера",
+      "icon": "icons/b04_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.0,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейки, включённые из-за подъездов",
+    "items": [
+     {
+      "label": "Ячейки, включённые из-за подъездов",
+      "icon": "icons/b04_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e08a2b",
+       "fa": 0.78,
+       "stroke": "#e08a2b",
+       "sa": 0.78,
+       "sw": 0.2,
+       "dash": false,
+       "hatch": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейки",
+    "items": [
+     {
+      "label": "в анализе",
+      "icon": "icons/b04_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 0.55,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     },
+     {
+      "label": "вне зафиксированных границ",
+      "icon": "icons/b04_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e1d8c7",
+       "fa": 0.86,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Исключённые участки",
+    "items": [
+     {
+      "label": "Исключённые участки",
+      "icon": "icons/b04_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#333338",
+       "fa": 0.59,
+       "stroke": "#333338",
+       "sa": 0.59,
+       "sw": 0.2,
+       "dash": false,
+       "hatch": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/b04_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "b12": {
+  "title": "Парковки и зоны загрузки",
+  "w": 480,
+  "h": 360,
+  "mpp": 2.1338333333333335,
+  "legend": [
+   {
+    "title": "Зоны загрузки",
+    "items": [
+     {
+      "label": "Зоны загрузки",
+      "icon": "icons/b12_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e08a2b",
+       "fa": 0.86,
+       "stroke": "#5a3d2b",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Парковки",
+    "items": [
+     {
+      "label": "открытая",
+      "icon": "icons/b12_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#94acd6",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "гаражи",
+      "icon": "icons/b12_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a68cc6",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "вокруг здания-паркинга",
+      "icon": "icons/b12_4.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#8bb0b0",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "здание-паркинг",
+      "icon": "icons/b12_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#6852a0",
+       "fa": 0.78,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "открытая, новая в v9 (вид — допущение)",
+      "icon": "icons/b12_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#94acd6",
+       "fa": 1.0,
+       "stroke": "#94acd6",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false,
+       "hatch": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Границы ячеек",
+    "items": [
+     {
+      "label": "Границы ячеек",
+      "icon": "icons/b12_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/b12_8.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a39279",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Озеленение",
+    "items": [
+     {
+      "label": "трава",
+      "icon": "icons/b12_9.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#dde9d0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "деревья",
+      "icon": "icons/b12_10.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#bddaae",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "b22": {
+  "title": "Освоенность внутриквартальных территорий",
+  "w": 480,
+  "h": 360,
+  "mpp": 2.1338333333333335,
+  "legend": [
+   {
+    "title": "Неосвоенная, контур команды",
+    "items": [
+     {
+      "label": "Неосвоенная, контур команды",
+      "icon": "icons/b22_1.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.0,
+       "stroke": "#b13840",
+       "sa": 1.0,
+       "sw": 0.8,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Наблюдения команды",
+    "items": [
+     {
+      "label": "много людей (используется)",
+      "icon": "icons/b22_2.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#4a74c9",
+       "sa": 1.0,
+       "sw": 0.6,
+       "dash": true
+      }
+     },
+     {
+      "label": "мало людей (не используется)",
+      "icon": "icons/b22_3.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.6,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Откосы и подпорные стенки",
+    "items": [
+     {
+      "label": "Откосы и подпорные стенки",
+      "icon": "icons/b22_4.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.4,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейки",
+    "items": [
+     {
+      "label": "Ячейки",
+      "icon": "icons/b22_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/b22_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d3cabd",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Освоенность",
+    "items": [
+     {
+      "label": "освоенная",
+      "icon": "icons/b22_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5ec46e",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "частично освоенная",
+      "icon": "icons/b22_8.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#e9d68a",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "неосвоенная (заброшенная)",
+      "icon": "icons/b22_9.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     },
+     {
+      "label": "не оценивается",
+      "icon": "icons/b22_10.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ece9e3",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "b28": {
+  "title": "Проблемы планировочной организации придомовых территорий",
+  "w": 480,
+  "h": 360,
+  "mpp": 2.1338333333333335,
+  "legend": [
+   {
+    "title": "1.2 неорганизованный узел входа",
+    "items": [
+     {
+      "label": "1.2 неорганизованный узел входа",
+      "icon": "icons/b28_1.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#d62828",
+       "fa": 1.0,
+       "size": 3.6,
+       "shape": "triangle",
+       "stroke": "#ffffff",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "2.2 опасный открытый объект",
+    "items": [
+     {
+      "label": "2.2 опасный открытый объект",
+      "icon": "icons/b28_2.png",
+      "sym": {
+       "kind": "marker",
+       "fill": "#16161c",
+       "fa": 1.0,
+       "size": 3.0,
+       "shape": "cross_fill",
+       "stroke": "#ffffff",
+       "sa": 1.0
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.1 транзит через придомовую территорию",
+    "items": [
+     {
+      "label": "3.1 транзит через придомовую территорию",
+      "icon": "icons/b28_3.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#7a1f27",
+       "sa": 1.0,
+       "sw": 0.5,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "2.3 совмещение транзитных пешеходных и транспортных потоков",
+    "items": [
+     {
+      "label": "2.3 совмещение транзитных пешеходных и транспортных потоков",
+      "icon": "icons/b28_4.png",
+      "sym": {
+       "kind": "line",
+       "stroke": "#e08a2b",
+       "sa": 1.0,
+       "sw": 1.1,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "1.1 ячейка: размеры, пропорции, фиксация границ (балл < 0,67)",
+    "items": [
+     {
+      "label": "1.1 ячейка: размеры, пропорции, фиксация границ (балл < 0,67)",
+      "icon": "icons/b28_5.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 0.0,
+       "stroke": "#1f6f78",
+       "sa": 1.0,
+       "sw": 0.6,
+       "dash": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.3 место поведения вне зоны контроля",
+    "items": [
+     {
+      "label": "3.3 место поведения вне зоны контроля",
+      "icon": "icons/b28_6.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d9c35b",
+       "fa": 1.0,
+       "stroke": "#16161c",
+       "sa": 1.0,
+       "sw": 0.35,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "1.4 здание с износом ≥ 40 %",
+    "items": [
+     {
+      "label": "1.4 здание с износом ≥ 40 %",
+      "icon": "icons/b28_7.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#5a3d2b",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "Здания",
+    "items": [
+     {
+      "label": "Здания",
+      "icon": "icons/b28_8.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#d3cabd",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "2.1 зона загрузки с заездом грузового транспорта",
+    "items": [
+     {
+      "label": "2.1 зона загрузки с заездом грузового транспорта",
+      "icon": "icons/b28_9.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#6852a0",
+       "fa": 1.0,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.2 территория обслуживающих объектов с внешним транзитом",
+    "items": [
+     {
+      "label": "3.2 территория обслуживающих объектов с внешним транзитом",
+      "icon": "icons/b28_10.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#c9d6f2",
+       "fa": 1.0,
+       "stroke": "#4a74c9",
+       "sa": 1.0,
+       "sw": 0.3,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.4 заброшенная (неосвоенная) территория",
+    "items": [
+     {
+      "label": "3.4 заброшенная (неосвоенная) территория",
+      "icon": "icons/b28_11.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.9,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.4 конкуренция активного публичного и персонального контроля",
+    "items": [
+     {
+      "label": "3.4 конкуренция активного публичного и персонального контроля",
+      "icon": "icons/b28_12.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#c978d3",
+       "fa": 0.75,
+       "stroke": "#232323",
+       "sa": 0,
+       "sw": 0.26,
+       "dash": false
+      }
+     }
+    ]
+   },
+   {
+    "title": "3.4 неконтролируемая территория",
+    "items": [
+     {
+      "label": "3.4 неконтролируемая территория",
+      "icon": "icons/b28_13.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#b13840",
+       "fa": 0.59,
+       "stroke": "#b13840",
+       "sa": 0.59,
+       "sw": 0.2,
+       "dash": false,
+       "hatch": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "1.3 территория вне зафиксированных границ",
+    "items": [
+     {
+      "label": "1.3 территория вне зафиксированных границ",
+      "icon": "icons/b28_14.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#a09a8f",
+       "fa": 1.0,
+       "stroke": "#a09a8f",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false,
+       "hatch": true
+      }
+     }
+    ]
+   },
+   {
+    "title": "Ячейка анализа",
+    "items": [
+     {
+      "label": "Ячейка анализа",
+      "icon": "icons/b28_15.png",
+      "sym": {
+       "kind": "fill",
+       "fill": "#ffffff",
+       "fa": 1.0,
+       "stroke": "#b8b2a7",
+       "sa": 1.0,
+       "sw": 0.2,
+       "dash": false
+      }
+     }
+    ]
+   }
+  ]
+ }
+}

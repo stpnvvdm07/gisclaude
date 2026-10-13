@@ -35,14 +35,15 @@ MSQ = Polygon([world_xy(*p) for p in METRO_SQUARE_PLAN]).intersection(TER); MEX 
 MALL = Point(*world_xy(*MALL_CROSSING_PLAN))
 wr(gpd.GeoDataFrame({"what": ["площадь у выхода метро", "выход метро «Беляево»", "переход к ТЦ с «Ашаном»"]}, geometry=[MSQ, MEX.buffer(6), MALL.buffer(6)], crs=32637), A14, "metro")
 # интенсивность по всем используемым путям: пешеходные пути к входам + пути к метро; транспорт; транзит
-net["load"] = net.ped.fillna(0) + net.metro.fillna(0) + net.mall.fillna(0)
+net["load"] = net.ped.fillna(0)
 tr13 = rd(A13, "transit"); TRH_ = U(tr13[tr13.cls == "высокая"].geometry).buffer(2); TRA_ = U(tr13.geometry).buffer(2)
 on = lambda Z: net.geometry.apply(lambda g: g.intersection(Z).length / g.length > 0.5 if g.length else False)
 net["tr_hi"] = on(TRH_); net["tr_any"] = on(TRA_)
-HIE = net[(net.load >= 4) | (net.vgroup == "высокая") | net.tr_hi]
-USED = net[~net.index.isin(HIE.index) & ((net.load >= 1) | (net.veh.fillna(0) >= 1) | net.tr_any)]
-log("участки сети: активный публичный (интенсивные)", len(HIE), round(HIE.length.sum() / 1000, 2), "км | пассивный (прочие используемые)", len(USED),
-    round(USED.length.sum() / 1000, 2), "км | не используются", len(net) - len(HIE) - len(USED), round(net.length.sum() / 1000 - HIE.length.sum() / 1000 - USED.length.sum() / 1000, 2), "км")
+# вариант Б (по заданию, п. 3.2): активный — оси с относительно высокой интенсивностью; пассивный — с относительно низкой; 1 путь — исключается
+HIE = net[(net.ped >= 4) | (net.mgroup == "высокая") | (net.vgroup == "высокая") | net.tr_hi]
+USED = net[~net.index.isin(HIE.index) & (net.ped.between(2, 3) | (net.mgroup == "низкая") | (net.vgroup == "низкая"))]
+log("участки сети: активный публичный (интенсивные)", len(HIE), round(HIE.length.sum() / 1000, 2), "км | пассивный (низкая интенсивность)", len(USED),
+    round(USED.length.sum() / 1000, 2), "км | без публичного контроля", len(net) - len(HIE) - len(USED), round(net.length.sum() / 1000 - HIE.length.sum() / 1000 - USED.length.sum() / 1000, 2), "км")
 AP_parts = [MSQ, MALL.buffer(25), U(HIE.buffer(15)), U(net[net.vgroup == "высокая"].buffer(15)),
             U(biz[~biz.within(EXC)].buffer(15)), U(side_hi.buffer(15)), U(stops.buffer(25))]
 PP_parts = [U(USED.buffer(7.5)), U(side_lo.buffer(7.5)), EXC]
@@ -50,8 +51,8 @@ AP = U(AP_parts).intersection(TER).difference(BLD); PP = U(PP_parts).intersectio
 AJ = AJ.intersection(FREE); PJ = PJ.intersection(FREE)
 zones = gpd.GeoDataFrame({"type": ["АЖ", "ПЖ", "АП", "ПП"],
                           "source": ["фасады с подъездами, 30 м", "фасады без подъездов и торцы, 15 м",
-                                     "площадь у метро; пути с 4+ путями (к входам и к метро), транспорт 4+, высокий транзит; входы в организации, тротуары улиц с высоким потоком, остановки у метро, 15–25 м",
-                                     "все прочие используемые дорожки и проезды, прочие тротуары улиц, 7,5 м; огороженные участки школ и детсадов"]},
+                                     "площадь у метро, переход к ТЦ; пути 4+ путей, пути к метро и ТЦ 20+ подъездов, транспорт 4+, высокий транзит; входы в организации, тротуары улиц с высоким потоком, остановки, 15–25 м",
+                                     "пути 2–3 пути, пути к метро и ТЦ 5–19 подъездов, транспорт 2–3, прочие тротуары улиц, 7,5 м; огороженные участки школ и детсадов"]},
                          geometry=[AJ, PJ, AP, PP], crs=32637)
 zones["area"] = zones.area.round()
 wr(zones, A14, "control_zones")

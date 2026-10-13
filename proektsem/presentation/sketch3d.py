@@ -2,7 +2,7 @@
 # Ячейки — заливка по классу вертикальных пропорций (vert_koef = площадь фасадов / площадь ячейки), дома выдавлены:
 # этажность x 3 м (условно), без паспорта — 1 этаж. На выходе:
 #   maps/sketch_vert.png + maps/sketch_vert.json (координаты подписей в пикселях картинки) — для слайда;
-#   ../vector/3d/cells_vert_v13.dae — модель Collada для SketchUp (метры, начало координат в центре территории).
+#   ../vector/3d/cells_vert_v14.dae — модель Collada для SketchUp (метры, начало координат в центре территории).
 import os, json, math
 import numpy as np, geopandas as gpd, shapely
 from shapely.geometry import Polygon, MultiPolygon
@@ -17,10 +17,10 @@ K_TILT = 0.80; EX = (0.32, 0.92)                      # сжатие плана 
 COL = {"Высокий": "#C35BC0", "Средний": "#E3A6E1", "Низкий": "#F4DDF3"}; OUT_C = "#E6E4E9"
 ROOF, WALL_L, WALL_F, EDGE = "#FFFFFF", "#9E9CA6", "#C9C7CF", "#14131A"
 
-cells = gpd.read_file(os.path.join(V, "konkovo_v13.gpkg"), layer="cells")
-bld = gpd.read_file(os.path.join(V, "konkovo_v13.gpkg"), layer="buildings")
-bnd = gpd.read_file(os.path.join(V, "konkovo_v13.gpkg"), layer="boundary")
-viol = gpd.read_file(os.path.join(V, "problems_v13.gpkg"), layer="viol_cells")[["num", "in_scope"]]
+cells = gpd.read_file(os.path.join(V, "konkovo_v14.gpkg"), layer="cells")
+bld = gpd.read_file(os.path.join(V, "konkovo_v14.gpkg"), layer="buildings")
+bnd = gpd.read_file(os.path.join(V, "konkovo_v14.gpkg"), layer="boundary")
+viol = gpd.read_file(os.path.join(V, "problems_v14.gpkg"), layer="viol_cells")[["num", "in_scope"]]
 cells = cells.merge(viol, on="num", how="left")
 ctx = gpd.read_file(os.path.join(V, "basemap", "dwg_context_lines.gpkg"))
 bld["h"] = bld["Этажность"].fillna(1).clip(lower=1) * FLOOR
@@ -125,8 +125,8 @@ for m, tl in groups.items():
 dae = ('<?xml version="1.0" encoding="utf-8"?>\n<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">'
        '<asset><contributor><authoring_tool>sketch3d.py</authoring_tool></contributor><unit name="meter" meter="1"/><up_axis>Z_UP</up_axis></asset>'
        f'<library_effects>{eff}</library_effects><library_materials>{mats}</library_materials><library_geometries>{"".join(geos)}</library_geometries>'
-       f'<library_visual_scenes><visual_scene id="scene" name="cells_v13">{"".join(nodes)}</visual_scene></library_visual_scenes>'
+       f'<library_visual_scenes><visual_scene id="scene" name="cells_v14">{"".join(nodes)}</visual_scene></library_visual_scenes>'
        '<scene><instance_visual_scene url="#scene"/></scene></COLLADA>\n')
 os.makedirs(os.path.join(V, "3d"), exist_ok=True)
-fn = os.path.join(V, "3d", "cells_vert_v13.dae"); open(fn, "w", encoding="utf-8").write(dae)
+fn = os.path.join(V, "3d", "cells_vert_v14.dae"); open(fn, "w", encoding="utf-8").write(dae)
 print("dae:", fn, {m: len(t) for m, t in groups.items()})

@@ -90,7 +90,7 @@ S["razdel"] = S["type"].map({"дорожка": "отдельно от проез
 S["length"] = S.len.round(1)
 TB = rd(K14, "boundary").geometry.iloc[0].exterior
 S["street_side"] = (S.distance(TB) <= 20).astype(int)                 # тротуары граничных улиц
-S["mgroup"] = np.select([S.metro >= 20, S.metro >= 5], ["высокая", "низкая"], default=None)
+S["mgroup"] = np.select([(S.metro >= 20) | (S.mall >= 20), (S.metro >= 5) | (S.mall >= 5)], ["высокая", "низкая"], default=None)
 OUT = gpd.GeoDataFrame(S[["eid", "type", "ped", "group", "metro", "mall", "mgroup", "veh", "vgroup", "razdel", "street_side", "length", "geometry"]], crs=32637)
 wr(OUT, A14, "network")
 pts["dist_to_entry"] = [round(float(dist[n]), 1) if np.isfinite(dist[n]) else None for n in pts.node]

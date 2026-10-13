@@ -1,12 +1,13 @@
 # Презентация «Средовой анализ придомовых территорий: проблемы и предпосылки» (Коньково №2, v13)
 
-План — `../doc_plan_презентация.md` (27 слайдов). Готовые файлы: `deck.pdf`, `deck.html`, `png/sNN.png`.
+План — `../doc_plan_презентация.md` (31 слайд, анализ v14). Готовые файлы: `deck.pdf`, `deck.html`, `png/sNN.png`.
 
 Сборка:
 
 ```
-python3 deck_data.py          # числа из vector/*_v13.gpkg -> deck_data.json
-QT_QPA_PLATFORM=offscreen python3.12 deck_maps.py .. maps [ключи]   # карты (PyQGIS) -> maps/*.png + maps.json
+cd ../analysis_v14 && python3 a_cells_entries.py && python3 b_network.py && python3 c_control_osv_flags.py && cd -   # анализ v14
+python3 deck_data14.py        # числа из vector/*_v14.gpkg -> deck_data14.json
+python3 maps14.py [ключи]     # карты v14 (matplotlib) -> maps/c_*.png + maps14.json
 python3 sketch3d.py           # 3D-вид ячеек (этаж 3 м) -> maps/sketch_vert.png + ../vector/3d/cells_vert_v13.dae для SketchUp
 python3 deck.py               # разметка слайдов -> deck.json (печатает замечания проверки наложений)
 python3 render_html.py        # deck.json -> deck.html

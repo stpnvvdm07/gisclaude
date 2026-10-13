@@ -5,7 +5,7 @@
 # и к переходу к ТЦ с «Ашаном». Число путей на участке — потенциальная интенсивность: 1 путь — исключается из оценки,
 # 2–3 — низкая, 4 и более — высокая; общая нагрузка (двери + метро + ТЦ): 2–19 — низкая, 20 и более — высокая.
 # Транспортное дерево — слой команды roads_counts (workload — число путей от подъездов по участку проезда), переносится на сеть.
-# Вход: vector/исходные_данные.gpkg, vector/konkovo_v16.gpkg. Выход: vector/analiz_v16.gpkg (пишется заново).
+# Вход: vector/source_data.gpkg, vector/konkovo_v16.gpkg. Выход: vector/analiz_v16.gpkg (пишется заново).
 import os, warnings
 import numpy as np, pandas as pd, geopandas as gpd, pyogrio
 from shapely.geometry import Point
@@ -15,7 +15,7 @@ from scipy.sparse import coo_matrix
 from scipy.sparse.csgraph import dijkstra
 warnings.filterwarnings("ignore")
 HERE = os.path.dirname(os.path.abspath(__file__)); V = os.path.join(HERE, "..", "vector")
-SRC, K14, A14 = (os.path.join(V, f) for f in ("исходные_данные.gpkg", "konkovo_v16.gpkg", "analiz_v16.gpkg"))
+SRC, K14, A14 = (os.path.join(V, f) for f in ("source_data.gpkg", "konkovo_v16.gpkg", "analiz_v16.gpkg"))
 rd = lambda f, l: gpd.read_file(f, layer=l)
 def wr(df, f, l): pyogrio.write_dataframe(df, f, layer=l, driver="GPKG", append=False)
 LOG = []

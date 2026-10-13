@@ -1,5 +1,5 @@
 # Анализ, шаг 1 — базовые слои: ячейки и комфорт, входы во дворы, зоны загрузки.
-# Вход: vector/исходные_данные.gpkg (ячейки с ручным расчётом комфорта команды, здания, подъезды, бизнес, ограждения, арки, ворота,
+# Вход: vector/source_data.gpkg (ячейки с ручным расчётом комфорта команды, здания, подъезды, бизнес, ограждения, арки, ворота,
 #       зелень, сеть, зоны загрузки команды). Выход: vector/konkovo_v16.gpkg.
 #
 # Правила:
@@ -19,7 +19,7 @@ from shapely.geometry import Point, LineString
 from shapely.ops import unary_union, substring
 warnings.filterwarnings("ignore")
 HERE = os.path.dirname(os.path.abspath(__file__)); V = os.path.join(HERE, "..", "vector")
-SRC, K15 = os.path.join(V, "исходные_данные.gpkg"), os.path.join(V, "konkovo_v16.gpkg")
+SRC, K15 = os.path.join(V, "source_data.gpkg"), os.path.join(V, "konkovo_v16.gpkg")
 K14 = A13 = SRC
 rd = lambda f, l: gpd.read_file(f, layer=l)
 def wr(df, f, l): pyogrio.write_dataframe(df, f, layer=l, driver="GPKG", append=False)

@@ -1,14 +1,14 @@
 # ГИС Коньково (территория № 2): чистые слои для ручного анализа.
 #
 # Что делает: берёт результаты анализа (vector/konkovo_v16, analiz_v16, problems_v16) и собирает из них
-#   ГИС/Коньково_ГИС.gpkg — один файл, слои с понятными русскими названиями и полями, стиль каждого слоя сохранён внутри
+#   GIS/konkovo_gis.gpkg — один файл (имена слоёв латиницей, в проекте — русские названия, поля по-русски), стиль каждого слоя сохранён внутри
 #                          (перетащите слой в любой проект QGIS — он откроется уже раскрашенным);
-#   ГИС/Коньково_ГИС.qgz  — проект QGIS с группами: Основа, Дворы и входы, Пути, Контроль и освоенность, Проблемы, Предпосылки.
+#   GIS/konkovo_gis.qgz  — проект QGIS с группами: Основа, Дворы и входы, Пути, Контроль и освоенность, Проблемы, Предпосылки.
 #
 # Как запустить:
 #   в QGIS: Модули → Консоль Python → «Показать редактор» → открыть этот файл → «Запустить» (▶).
 #           Слои сразу добавятся в открытый проект группой «Коньково — ГИС».
-#   без QGIS-окна (если стоит QGIS с Python):  python3 ГИС_Коньково.py
+#   без QGIS-окна (если стоит QGIS с Python):  python3 konkovo_gis.py
 #
 # Пересчитать сам анализ (нужны geopandas и scipy):  python3 analysis/s1_base.py, s2_network.py, s3_control_osv_flags.py.
 import os, sys
@@ -33,12 +33,12 @@ def project_root():
         home = QgsProject.instance().homePath()
         if home and os.path.exists(os.path.join(home, "vector", "konkovo_v16.gpkg")): return home
         from qgis.PyQt.QtWidgets import QFileDialog
-        return QFileDialog.getExistingDirectory(None, "Папка proektsem (где лежит ГИС_Коньково.py)")
+        return QFileDialog.getExistingDirectory(None, "Папка proektsem (где лежит konkovo_gis.py)")
 
 
 ROOT = project_root()
-V = os.path.join(ROOT, "vector"); OUT_DIR = os.path.join(ROOT, "ГИС"); os.makedirs(OUT_DIR, exist_ok=True)
-GPKG = os.path.join(OUT_DIR, "Коньково_ГИС.gpkg"); QGZ = os.path.join(OUT_DIR, "Коньково_ГИС.qgz")
+V = os.path.join(ROOT, "vector"); OUT_DIR = os.path.join(ROOT, "GIS"); os.makedirs(OUT_DIR, exist_ok=True)
+GPKG = os.path.join(OUT_DIR, "konkovo_gis.gpkg"); QGZ = os.path.join(OUT_DIR, "konkovo_gis.qgz")       # в путях — только латиница
 K, A, P = (os.path.join(V, f) for f in ("konkovo_v16.gpkg", "analiz_v16.gpkg", "problems_v16.gpkg"))
 
 # ----------------------------------------------------------------------------- цвета (как на картах презентации)
@@ -271,15 +271,15 @@ def build():
     groups = {g: top.addGroup(g) for g in GROUP_ORDER}
     n = 0
     for grp, name, src, layer, fmap, style, labels in LAYERS:
-        if not export_layer(name, src, layer, fmap): continue
-        lyr = QgsVectorLayer(f"{GPKG}|layername={name}", name, "ogr")
+        if not export_layer(layer, src, layer, fmap): continue            # в GPKG — латинское имя слоя, в проекте — русское
+        lyr = QgsVectorLayer(f"{GPKG}|layername={layer}", name, "ogr")
         apply_style(lyr, style)
         if name == "Места выхода на улицу": size_by(lyr, "2 + 0.9 * sqrt(\"путей\")")
         if labels: apply_labels(lyr, labels)
-        lyr.saveStyleToDatabase("стиль", name, True, "")       # стиль внутри GPKG
+        lyr.saveStyleToDatabase("default", name, True, "")       # стиль внутри GPKG
         proj.addMapLayer(lyr, False); groups[grp].addLayer(lyr); n += 1
     # общая нагрузка — тот же слой сети другим стилем (в проекте)
-    net = QgsVectorLayer(f"{GPKG}|layername=Пешеходное дерево путей", "Сеть: общая нагрузка (двери + метро + ТЦ)", "ogr")
+    net = QgsVectorLayer(f"{GPKG}|layername=network", "Сеть: общая нагрузка (двери + метро + ТЦ)", "ogr")
     apply_style(net, cat("нагрузка", [("высокая", "20 путей и больше", C["dred"], 1.2), ("низкая", "2–19 путей", "#E07AB5", 0.7),
                                       ("один путь", "один путь", "#6F6A62", 0.3)], "line", other=("без путей", "#D9D4CB", 0.25)))
     proj.addMapLayer(net, False); groups["3 Пути"].insertLayer(1, net).setItemVisibilityChecked(False)
@@ -288,7 +288,7 @@ def build():
     if HEADLESS:
         proj.writeEntry("Paths", "/Absolute", False); proj.setTitle("Коньково — ГИС для ручного анализа")
         from qgis.core import QgsReferencedRectangle
-        ext = QgsVectorLayer(f"{GPKG}|layername=Граница территории", "b", "ogr").extent(); ext.scale(1.1)
+        ext = QgsVectorLayer(f"{GPKG}|layername=boundary", "b", "ogr").extent(); ext.scale(1.1)
         vs = proj.viewSettings(); vs.setDefaultViewExtent(QgsReferencedRectangle(ext, proj.crs()))
         if hasattr(vs, "setDefaultRotation"): vs.setDefaultRotation(-26.75)        # улицы по осям, как на картах команды
         proj.write(QGZ); print("проект:", QGZ)

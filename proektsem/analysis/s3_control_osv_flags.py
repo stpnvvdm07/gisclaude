@@ -1,13 +1,13 @@
 # Анализ, шаг 3: социальный контроль (без дыр), места поведения, освоенность (шестиугольники 7 м со сглаживанием), 11 пунктов,
 # сводный счёт, слои проблем и предпосылок, устойчивость к порогам и допущениям.
-# Вход: vector/исходные_данные.gpkg, konkovo_v16.gpkg, analiz_v16.gpkg. Выход: analiz_v16.gpkg (контроль, освоенность), problems_v16.gpkg (пишется заново).
+# Вход: vector/source_data.gpkg, konkovo_v16.gpkg, analiz_v16.gpkg. Выход: analiz_v16.gpkg (контроль, освоенность), problems_v16.gpkg (пишется заново).
 import os, warnings, math
 import numpy as np, pandas as pd, geopandas as gpd, pyogrio
 from shapely.geometry import box
 from shapely.ops import unary_union, linemerge
 warnings.filterwarnings("ignore")
 HERE = os.path.dirname(os.path.abspath(__file__)); V = os.path.join(HERE, "..", "vector")
-SRC, K14, A14, P14 = (os.path.join(V, f) for f in ("исходные_данные.gpkg", "konkovo_v16.gpkg", "analiz_v16.gpkg", "problems_v16.gpkg"))
+SRC, K14, A14, P14 = (os.path.join(V, f) for f in ("source_data.gpkg", "konkovo_v16.gpkg", "analiz_v16.gpkg", "problems_v16.gpkg"))
 rd = lambda f, l: gpd.read_file(f, layer=l)
 def wr(df, f, l): pyogrio.write_dataframe(df, f, layer=l, driver="GPKG", append=False)
 U = lambda gs: unary_union([g for g in gs if g is not None and not g.is_empty])

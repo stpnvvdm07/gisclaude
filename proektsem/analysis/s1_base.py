@@ -160,6 +160,9 @@ for i, p in enumerate(C_.geometry):
     if i in used: continue
     grp = [j for j, q in enumerate(C_.geometry) if j not in used and p.distance(q) <= 18]; used |= set(grp); keep.append(i)
 E = C_.loc[keep].copy()
+# вход — на внешнем фронте дворов: не дальше 45 м от края (арка — 60 м); глубже — проходы между дворами, это не вход в жилое образование
+E["d_edge"] = E.distance(ring).round(1)
+E = E[(E.d_edge <= 45) | ((E.podtip == "Вход — арка") & (E.d_edge <= 60))].copy()
 # типы и фото с полевого обследования (до 25 м)
 sv = rd(K14, "entries_territory"); sv = sv[sv.src.astype(str).str.startswith(("обследование", "замер", "слой arches"))]
 E["src"] = "по сети и застройке"; E["photo"] = None

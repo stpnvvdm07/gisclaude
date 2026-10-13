@@ -1,0 +1,10 @@
+[general]
+name=Коньково: слои проекта
+qgisMinimumVersion=3.22
+description=Обновление слоёв проекта до последней версии данных (konkovo/analiz/problems_vNN.gpkg) и удаление ненужных слоёв.
+about=Две команды в меню «Модули → Коньково»: 1) перевести все слои на самую свежую версию gpkg, где есть такой же слой; 2) удалить битые слои, дубли, пустые группы и слои старых версий, которых нет в последней.
+version=1.0
+author=Команда 2
+email=stpnvvdm07@gmail.com
+category=Vector
+experimental=False
